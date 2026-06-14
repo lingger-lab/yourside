@@ -42,36 +42,32 @@ export async function GET(request: Request) {
     .eq('auth_user_id', user.id)
     .single()
 
-  let isNewUser = false
-  let effectiveRole: UserRole = role
-
-  if (existingClient) {
-    effectiveRole = 'client'
-  } else if (existingPartner) {
-    effectiveRole = 'partner'
-  } else {
-    isNewUser = true
-    if (role === 'partner') {
-      await adminClient.from('partner').insert({
-        auth_user_id: user.id,
-        provider,
-        email: user.email!,
-      })
-    } else {
-      await adminClient.from('client').insert({
-        auth_user_id: user.id,
-        provider,
-        email: user.email!,
-      })
-    }
+  // 선택한 역할의 레코드가 없으면 생성 (한 계정으로 양쪽 역할 모두 가능)
+  let isNewRole = false
+  if (role === 'client' && !existingClient) {
+    isNewRole = true
+    await adminClient.from('client').insert({
+      auth_user_id: user.id,
+      provider,
+      email: user.email!,
+    })
+  } else if (role === 'partner' && !existingPartner) {
+    isNewRole = true
+    await adminClient.from('partner').insert({
+      auth_user_id: user.id,
+      provider,
+      email: user.email!,
+    })
   }
 
-  if (isNewUser) {
-    return NextResponse.redirect(`${origin}/vision?role=${effectiveRole}`)
+  const isFirstLogin = !existingClient && !existingPartner
+  if (isFirstLogin) {
+    return NextResponse.redirect(`${origin}/vision?role=${role}`)
   }
 
-  if (effectiveRole === 'partner') {
-    return NextResponse.redirect(`${origin}/register`)
+  // 선택한 역할로 라우팅
+  if (role === 'partner') {
+    return NextResponse.redirect(`${origin}/${isNewRole ? 'register' : 'matching'}`)
   }
   return NextResponse.redirect(`${origin}/request`)
 }
