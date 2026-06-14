@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { signOut } from '@/lib/auth/actions'
 
 const TABS = [
+  { href: '/', label: '홈' },
   { href: '/request', label: '일 맡기기' },
   { href: '/status', label: '의뢰 현황' },
 ] as const
@@ -16,7 +17,9 @@ export function ClientNav() {
     <nav className="fixed bottom-0 left-0 right-0 border-t border-border bg-background">
       <div className="mx-auto flex max-w-md items-center justify-around px-4 py-2">
         {TABS.map((tab) => {
-          const isActive = pathname === tab.href || pathname.startsWith(tab.href + '/')
+          const isActive = tab.href === '/'
+            ? pathname === '/'
+            : pathname === tab.href || pathname.startsWith(tab.href + '/')
           return (
             <Link
               key={tab.href}

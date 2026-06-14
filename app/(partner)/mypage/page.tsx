@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useState } from 'react'
+import { useActionState, useState, useEffect } from 'react'
 import { updatePartnerProfile } from '@/lib/partner/actions'
 import { SubmitButton } from '@/components/submit-button'
 
@@ -27,26 +27,82 @@ const CAREER_OPTIONS = [
   { value: '15', label: '10년 이상' },
 ] as const
 
-export default function RegisterPage() {
+interface PartnerProfile {
+  name: string | null
+  field: string | null
+  career_yrs: number | null
+  contact: string | null
+  email: string
+  grade: string
+  created_at: string
+}
+
+export default function MyPage() {
   const [state, formAction] = useActionState(updatePartnerProfile, {})
+  const [profile, setProfile] = useState<PartnerProfile | null>(null)
+  const [loading, setLoading] = useState(true)
   const [selectedField, setSelectedField] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetch('/api/partner/profile')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.partner) {
+          setProfile(data.partner)
+          setSelectedField(data.partner.field)
+        }
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <p className="text-sm text-text-muted">로딩 중...</p>
+      </div>
+    )
+  }
+
+  if (!profile) {
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <p className="text-sm text-text-muted">프로필 정보를 불러올 수 없습니다.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-1 flex-col px-6 py-8">
-      <h1 className="mb-2 text-2xl font-bold text-accent">파트너 등록</h1>
+      <h1 className="mb-2 text-2xl font-bold text-accent">마이페이지</h1>
       <p className="mb-6 text-sm text-text-muted">
-        곁에 파트너로 등록하고 의뢰를 받아보세요.
+        내 프로필을 확인하고 수정할 수 있습니다.
       </p>
 
-      {/* 작업료 0% 수수료 강조 */}
-      <div className="mb-6 rounded-lg border border-accent/30 bg-accent/5 p-4 text-center">
-        <p className="text-lg font-bold text-accent">작업료 0% 수수료</p>
-        <p className="mt-1 text-xs text-text-muted">
-          파트너님이 받는 작업료에서 수수료를 떼지 않습니다.
-        </p>
+      {/* 프로필 요약 카드 */}
+      <div className="mb-6 rounded-lg border border-border bg-surface p-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-lg font-bold text-accent">
+            {(profile.name || profile.email)[0].toUpperCase()}
+          </div>
+          <div>
+            <p className="font-medium text-text">{profile.name || '이름 미등록'}</p>
+            <p className="text-xs text-text-muted">{profile.email}</p>
+          </div>
+        </div>
+        <div className="mt-3 flex gap-3 text-xs text-text-muted">
+          <span className="rounded bg-accent/10 px-2 py-0.5 text-accent">{profile.grade === 'gold' ? '골드' : '스탠다드'}</span>
+          <span>가입: {new Date(profile.created_at).toLocaleDateString('ko-KR')}</span>
+        </div>
       </div>
 
+      {/* 수정 성공 메시지 */}
+      {state.error === undefined && state.error !== undefined && (
+        <p className="mb-4 text-sm text-green-600">프로필이 수정되었습니다.</p>
+      )}
+
       <form action={formAction} className="flex flex-col gap-5">
+        <input type="hidden" name="redirect_to" value="/mypage" />
         {/* 전문 분야 */}
         <div>
           <label className="mb-2 block text-sm font-medium text-text">
@@ -79,6 +135,7 @@ export default function RegisterPage() {
           <select
             id="career_yrs"
             name="career_yrs"
+            defaultValue={profile.career_yrs?.toString() || ''}
             className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-text focus:border-accent focus:outline-none"
           >
             {CAREER_OPTIONS.map((opt) => (
@@ -89,7 +146,7 @@ export default function RegisterPage() {
           </select>
         </div>
 
-        {/* 이름 (선택) */}
+        {/* 이름 */}
         <div>
           <label htmlFor="name" className="mb-1 block text-sm font-medium text-text">
             이름 <span className="text-xs text-text-muted">(선택)</span>
@@ -98,12 +155,13 @@ export default function RegisterPage() {
             id="name"
             name="name"
             type="text"
+            defaultValue={profile.name || ''}
             placeholder="본명 또는 활동명"
             className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
           />
         </div>
 
-        {/* 연락처 (선택) */}
+        {/* 연락처 */}
         <div>
           <label htmlFor="contact" className="mb-1 block text-sm font-medium text-text">
             연락처 <span className="text-xs text-text-muted">(선택, 비공개)</span>
@@ -112,6 +170,7 @@ export default function RegisterPage() {
             id="contact"
             name="contact"
             type="text"
+            defaultValue={profile.contact || ''}
             placeholder="전화번호 또는 이메일"
             className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
           />
@@ -124,7 +183,7 @@ export default function RegisterPage() {
 
         {/* 제출 */}
         <SubmitButton className="rounded-lg bg-accent px-6 py-3 font-semibold text-white transition-colors hover:bg-accent/90 disabled:opacity-50">
-          파트너 등록 완료
+          프로필 수정
         </SubmitButton>
       </form>
     </div>

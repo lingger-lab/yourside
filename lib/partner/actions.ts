@@ -55,5 +55,6 @@ export async function updatePartnerProfile(
     return { error: '프로필 등록에 실패했습니다. 다시 시도해주세요.' }
   }
 
-  redirect('/matching')
+  const redirectTo = (formData.get('redirect_to') as string) || '/matching'
+  redirect(redirectTo)
 }

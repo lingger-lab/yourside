@@ -6,12 +6,17 @@ import { SubmitButton } from '@/components/submit-button'
 
 const QUICK_CHIPS = [
   '창업코칭',
+  '정부자금·보조금',
+  '사업계획서',
   'AEO최적화',
   'AI진단',
   '디자인',
   '웹개발',
   '영상제작',
   '마케팅',
+  '세무·회계',
+  '법무',
+  '노무',
   '기타',
 ] as const
 
