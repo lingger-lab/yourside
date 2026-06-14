@@ -31,14 +31,14 @@ export function ProgressBar({ requestStatus, dealStatus }: ProgressBarProps) {
         <div key={step.key} className="flex flex-1 flex-col items-center gap-1">
           <div className="flex w-full items-center">
             <div
-              className={`h-2 w-full rounded-full ${
-                i <= activeStep ? 'bg-primary' : 'bg-border'
+              className={`h-2 w-full rounded-full transition-colors ${
+                i <= activeStep ? 'bg-accent' : 'bg-border-light'
               }`}
             />
           </div>
           <span
             className={`text-xs ${
-              i <= activeStep ? 'font-semibold text-primary' : 'text-text-muted'
+              i <= activeStep ? 'font-semibold text-text' : 'text-text-muted'
             }`}
           >
             {step.label}

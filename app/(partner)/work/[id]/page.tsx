@@ -72,8 +72,8 @@ export default async function WorkDetailPage(props: PageProps) {
   const allStepsDone = steps.length === 5 && steps.every((s) => s.status === 'done')
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8">
-      <Link href="/work" className="mb-4 text-sm text-text-muted hover:text-text">
+    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
+      <Link href="/work" className="mb-4 text-sm text-text-muted hover:text-text transition-colors">
         &larr; 작업 목록
       </Link>
 
@@ -85,7 +85,7 @@ export default async function WorkDetailPage(props: PageProps) {
       )}
 
       {/* 작업비 — work_fee만 표시 */}
-      <div className="mb-4 rounded-lg border border-accent/30 bg-accent/5 p-4 text-center">
+      <div className="mb-4 rounded-xl border border-accent/20 bg-surface-warm p-4 text-center shadow-sm">
         <p className="text-sm text-text-muted">작업비</p>
         <p className="text-2xl font-bold text-accent">
           {d.work_fee.toLocaleString('ko-KR')}
@@ -123,9 +123,9 @@ export default async function WorkDetailPage(props: PageProps) {
 
       {/* 작업 제출 안내 */}
       {allStepsDone && d.status === 'working' && (
-        <div className="mb-4 rounded-lg border border-green-200 bg-green-50 p-4 text-center">
-          <p className="font-semibold text-green-700">모든 단계 완료</p>
-          <p className="mt-1 text-xs text-green-600">
+        <div className="mb-4 rounded-xl border border-success/20 bg-success-light p-4 text-center">
+          <p className="font-semibold text-success">모든 단계 완료</p>
+          <p className="mt-1 text-xs text-success/80">
             곁에 매니저가 확인 후 사장님 검수 단계로 전환합니다.
           </p>
         </div>
@@ -133,9 +133,9 @@ export default async function WorkDetailPage(props: PageProps) {
 
       {/* 완료 상태 */}
       {d.status === 'done' && (
-        <div className="mb-4 rounded-lg border border-green-200 bg-green-50 p-4">
-          <h2 className="mb-2 font-semibold text-green-700">작업 완료</h2>
-          <p className="text-sm text-green-600">
+        <div className="mb-4 rounded-xl border border-success/20 bg-success-light p-4">
+          <h2 className="mb-2 font-semibold text-success">작업 완료</h2>
+          <p className="text-sm text-success/80">
             {settle?.escrow_status === 'released'
               ? `정산 완료 — ${d.work_fee.toLocaleString('ko-KR')}원이 지급되었습니다.`
               : '곁에 검토진 확인 중입니다. 정산이 곧 진행됩니다.'}
@@ -145,7 +145,7 @@ export default async function WorkDetailPage(props: PageProps) {
 
       {/* 의뢰 상세 */}
       {request && (
-        <div className="mt-4 rounded-lg border border-border p-4">
+        <div className="mt-4 rounded-xl border border-border-light p-4 shadow-xs">
           <h3 className="mb-2 text-sm font-semibold text-text">의뢰 내용</h3>
           <p className="whitespace-pre-wrap text-sm text-text-muted">{request.detail}</p>
         </div>

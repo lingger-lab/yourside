@@ -51,7 +51,7 @@ export default async function ReviewInputPage(props: PageProps) {
       <h1 className="mb-6 text-xl font-bold text-text">곁에 리뷰 입력</h1>
 
       {/* 거래 요약 */}
-      <div className="mb-6 rounded-lg border border-border p-4">
+      <div className="mb-6 rounded-xl border border-border-light p-4 shadow-xs">
         <h2 className="font-medium text-text">{req.title}</h2>
         <div className="mt-2 grid grid-cols-2 gap-3 text-sm">
           <div>
@@ -75,13 +75,13 @@ export default async function ReviewInputPage(props: PageProps) {
       </div>
 
       {existingReview ? (
-        <div className="rounded-lg border border-green-200 bg-green-50 p-4">
-          <p className="font-medium text-green-700">리뷰 작성 완료</p>
-          <p className="mt-1 text-sm text-green-600">
+        <div className="rounded-xl border border-success/20 bg-success-light p-4">
+          <p className="font-medium text-success">리뷰 작성 완료</p>
+          <p className="mt-1 text-sm text-success/80">
             별점: {'★'.repeat(existingReview.rating)}{'☆'.repeat(5 - existingReview.rating)}
           </p>
           {existingReview.comment && (
-            <p className="mt-1 text-sm text-green-600">의견: {existingReview.comment}</p>
+            <p className="mt-1 text-sm text-success/80">의견: {existingReview.comment}</p>
           )}
         </div>
       ) : (

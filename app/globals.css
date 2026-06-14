@@ -1,18 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  /* 색상 — 네이비 기반 신뢰감 팔레트 + 블루 포인트 */
+  --background: #fafbfc;
   --foreground: #1a1a2e;
   --primary: #1a1a2e;
   --primary-light: #16213e;
-  --accent: #0f3460;
-  --accent-light: #e94560;
-  --surface: #f8f9fa;
-  --border: #e2e8f0;
+  --accent: #4a6fa5;
+  --accent-light: #7a9cc6;
+  --surface: #f4f6f8;
+  --surface-warm: #eef2f7;
+  --border: #d1d5db;
+  --border-light: #e5e7eb;
+  --text: #1a1a2e;
   --text-muted: #64748b;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
+  --text-subtle: #94a3b8;
+  --success: #16a34a;
+  --success-light: #f0fdf4;
+  --warning: #d97706;
+  --warning-light: #fffbeb;
+  --error: #dc2626;
+  --error-light: #fef2f2;
+  --info: #2563eb;
+  --info-light: #eff6ff;
+
+  /* 그림자 */
+  --shadow-xs: 0 1px 2px rgba(26, 26, 46, 0.04);
+  --shadow-sm: 0 1px 3px rgba(26, 26, 46, 0.06), 0 1px 2px rgba(26, 26, 46, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(26, 26, 46, 0.06), 0 2px 4px -2px rgba(26, 26, 46, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(26, 26, 46, 0.08), 0 4px 6px -4px rgba(26, 26, 46, 0.04);
+  --shadow-float: 0 20px 40px -8px rgba(26, 26, 46, 0.12);
 }
 
 @theme inline {
@@ -23,19 +40,92 @@
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-surface: var(--surface);
+  --color-surface-warm: var(--surface-warm);
   --color-border: var(--border);
+  --color-border-light: var(--border-light);
+  --color-text: var(--text);
   --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
   --color-success: var(--success);
+  --color-success-light: var(--success-light);
   --color-warning: var(--warning);
+  --color-warning-light: var(--warning-light);
   --color-error: var(--error);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-error-light: var(--error-light);
+  --color-info: var(--info);
+  --color-info-light: var(--info-light);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-float: var(--shadow-float);
+  --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  word-break: keep-all;
 }
+
+/* 애니메이션 키프레임 */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+/* 유틸리티 클래스 */
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out both;
+}
+
+.card-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-hover:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 스태거 딜레이 */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
 
 /* iOS safe area 지원 */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {

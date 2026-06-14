@@ -13,10 +13,10 @@ const STATUS_LABELS: Record<string, string> = {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  open: 'bg-blue-100 text-blue-700',
-  matching: 'bg-yellow-100 text-yellow-700',
-  dealt: 'bg-green-100 text-green-700',
-  closed: 'bg-gray-100 text-gray-500',
+  open: 'bg-info-light text-info',
+  matching: 'bg-warning-light text-warning',
+  dealt: 'bg-success-light text-success',
+  closed: 'bg-surface text-text-subtle',
 }
 
 export default async function StatusPage() {
@@ -49,7 +49,7 @@ export default async function StatusPage() {
   const requestList = (requests || []) as RequestRow[]
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8">
+    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
       <h1 className="mb-6 text-2xl font-bold text-primary">의뢰 현황</h1>
 
       {requestList.length === 0 ? (
@@ -57,18 +57,18 @@ export default async function StatusPage() {
           <p className="text-text-muted">아직 등록한 의뢰가 없습니다.</p>
           <Link
             href="/request"
-            className="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary/90"
+            className="rounded-xl bg-primary px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
           >
             일 맡기기
           </Link>
         </div>
       ) : (
         <ul className="flex flex-col gap-3">
-          {requestList.map((req) => (
-            <li key={req.id}>
+          {requestList.map((req, i) => (
+            <li key={req.id} className={`animate-fade-in stagger-${Math.min(i + 1, 5)}`}>
               <Link
                 href={`/status/${req.id}`}
-                className="block rounded-lg border border-border p-4 transition-colors hover:border-primary/50"
+                className="block rounded-xl border border-border-light p-4 shadow-xs card-hover"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
@@ -80,7 +80,7 @@ export default async function StatusPage() {
                   </div>
                   <span
                     className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      STATUS_COLORS[req.status] || 'bg-gray-100 text-gray-500'
+                      STATUS_COLORS[req.status] || 'bg-surface text-text-subtle'
                     }`}
                   >
                     {STATUS_LABELS[req.status] || req.status}

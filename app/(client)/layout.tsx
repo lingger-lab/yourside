@@ -13,7 +13,7 @@ export default async function ClientLayout({ children }: { children: React.React
   }
 
   return (
-    <div className="flex min-h-screen flex-col pb-14">
+    <div className="flex min-h-screen flex-col pb-16">
       {children}
       <ClientNav />
     </div>

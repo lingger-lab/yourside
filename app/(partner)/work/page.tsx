@@ -12,9 +12,9 @@ const STATUS_LABELS: Record<DealStatus, string> = {
 }
 
 const STATUS_COLORS: Record<DealStatus, string> = {
-  quoted: 'bg-blue-100 text-blue-700',
-  working: 'bg-yellow-100 text-yellow-700',
-  done: 'bg-green-100 text-green-700',
+  quoted: 'bg-info-light text-info',
+  working: 'bg-warning-light text-warning',
+  done: 'bg-success-light text-success',
 }
 
 export default async function WorkListPage() {
@@ -48,7 +48,7 @@ export default async function WorkListPage() {
   }>
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8">
+    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
       <h1 className="mb-6 text-2xl font-bold text-accent">작업 현황</h1>
 
       {dealList.length === 0 ? (
@@ -56,18 +56,18 @@ export default async function WorkListPage() {
           <p className="text-text-muted">아직 진행 중인 작업이 없습니다.</p>
           <Link
             href="/matching"
-            className="rounded-lg bg-accent px-6 py-3 font-semibold text-white transition-colors hover:bg-accent/90"
+            className="rounded-xl bg-accent px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-accent/90 hover:shadow-md btn-press"
           >
             매칭 제안 확인
           </Link>
         </div>
       ) : (
         <ul className="flex flex-col gap-3">
-          {dealList.map((d) => (
-            <li key={d.id}>
+          {dealList.map((d, i) => (
+            <li key={d.id} className={`animate-fade-in stagger-${Math.min(i + 1, 5)}`}>
               <Link
                 href={`/work/${d.id}`}
-                className="block rounded-lg border border-border p-4 transition-colors hover:border-accent/50"
+                className="block rounded-xl border border-border-light p-4 shadow-xs card-hover"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">

@@ -81,7 +81,7 @@ export function ChatWidget() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-20 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent shadow-lg transition-transform hover:scale-105 sm:bottom-6"
+          className="fixed bottom-20 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent shadow-float transition-all hover:scale-105 hover:shadow-lg sm:bottom-6"
           aria-label="곁에 매니저 채팅 열기"
         >
           <svg
@@ -104,18 +104,18 @@ export function ChatWidget() {
         <div
           role="dialog"
           aria-label="곁에 매니저 채팅"
-          className="fixed bottom-0 right-0 z-50 flex h-[32rem] w-full flex-col rounded-t-2xl border border-border bg-background shadow-2xl sm:bottom-6 sm:right-4 sm:w-96 sm:rounded-2xl"
+          className="fixed bottom-0 right-0 z-50 flex h-[32rem] w-full flex-col rounded-t-2xl border border-border-light bg-background shadow-float sm:bottom-6 sm:right-4 sm:w-96 sm:rounded-2xl animate-scale-in"
         >
           {/* 헤더 */}
-          <div className="flex items-center justify-between rounded-t-2xl bg-accent px-4 py-3">
+          <div className="flex items-center justify-between rounded-t-2xl bg-primary px-4 py-3 sm:rounded-t-2xl">
             <div>
               <p className="text-sm font-bold text-white">곁에 매니저</p>
-              <p className="text-xs text-white/80">무엇이든 물어보세요</p>
+              <p className="text-xs text-white/70">무엇이든 물어보세요</p>
             </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="text-white/80 hover:text-white"
+              className="text-white/70 hover:text-white transition-colors"
               aria-label="닫기"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -135,7 +135,7 @@ export function ChatWidget() {
                       key={q}
                       type="button"
                       onClick={() => sendMessage(q)}
-                      className="rounded-full border border-border px-3 py-1.5 text-xs text-text hover:bg-surface"
+                      className="rounded-full border border-border-light px-3 py-1.5 text-xs text-text hover:bg-surface-warm transition-colors"
                     >
                       {q}
                     </button>
@@ -152,8 +152,8 @@ export function ChatWidget() {
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm ${
                     msg.role === 'user'
-                      ? 'bg-accent text-white'
-                      : 'bg-surface text-text'
+                      ? 'bg-primary text-white'
+                      : 'bg-surface text-text shadow-xs'
                   }`}
                 >
                   <p className="whitespace-pre-wrap">{msg.text}</p>
@@ -162,7 +162,7 @@ export function ChatWidget() {
                       href={KAKAO_CHANNEL_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-block rounded-lg bg-yellow-400 px-3 py-1.5 text-xs font-medium text-yellow-900 hover:bg-yellow-500"
+                      className="mt-2 inline-block rounded-lg bg-warning px-3 py-1.5 text-xs font-medium text-white hover:bg-warning/90 transition-colors"
                     >
                       카카오톡으로 상담하기
                     </a>
@@ -173,7 +173,7 @@ export function ChatWidget() {
 
             {loading && (
               <div className="mb-3 flex justify-start">
-                <div className="rounded-2xl bg-surface px-4 py-2 text-sm text-text-muted">
+                <div className="rounded-2xl bg-surface px-4 py-2 text-sm text-text-muted shadow-xs">
                   답변 작성 중...
                 </div>
               </div>
@@ -182,7 +182,7 @@ export function ChatWidget() {
           </div>
 
           {/* 입력 영역 */}
-          <form onSubmit={handleSubmit} className="border-t border-border px-4 py-3">
+          <form onSubmit={handleSubmit} className="border-t border-border-light px-4 py-3">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -190,13 +190,13 @@ export function ChatWidget() {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="질문을 입력하세요..."
                 aria-label="질문 입력"
-                className="flex-1 rounded-full border border-border bg-surface px-4 py-2 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+                className="flex-1 rounded-full border border-border-light bg-surface px-4 py-2 text-sm text-text placeholder:text-text-subtle focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
                 disabled={loading}
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent/90 disabled:opacity-50"
+                className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent/90 disabled:opacity-50 btn-press transition-colors"
               >
                 전송
               </button>

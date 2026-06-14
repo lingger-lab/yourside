@@ -9,9 +9,9 @@ const STEP_LABELS: Record<WorkflowStep, string> = {
 }
 
 const STATUS_STYLES: Record<StepStatus, { bg: string; text: string; label: string }> = {
-  pending: { bg: 'bg-gray-100', text: 'text-gray-500', label: '대기' },
-  in_progress: { bg: 'bg-yellow-100', text: 'text-yellow-700', label: '진행 중' },
-  done: { bg: 'bg-green-100', text: 'text-green-700', label: '완료' },
+  pending: { bg: 'bg-surface', text: 'text-text-subtle', label: '대기' },
+  in_progress: { bg: 'bg-warning-light', text: 'text-warning', label: '진행 중' },
+  done: { bg: 'bg-success-light', text: 'text-success', label: '완료' },
 }
 
 interface WorkflowChecklistProps {
@@ -31,7 +31,7 @@ export function WorkflowChecklist({ steps }: WorkflowChecklistProps) {
         return (
           <div
             key={stepKey}
-            className="flex items-center gap-3 rounded-lg border border-border p-3"
+            className="flex items-center gap-3 rounded-xl border border-border-light p-3 shadow-xs"
           >
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-surface text-xs font-medium text-text-muted">
               {i + 1}

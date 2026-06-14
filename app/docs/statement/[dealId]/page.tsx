@@ -21,7 +21,7 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
     .single()
 
   if (!deal) {
-    return <div className="p-10 text-center text-gray-500">거래명세서를 찾을 수 없습니다.</div>
+    return <div className="p-10 text-center text-text-muted">거래명세서를 찾을 수 없습니다.</div>
   }
 
   // 소유권 확인 (client, partner 또는 admin)
@@ -104,7 +104,7 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
       </div>
 
       {/* 거래명세서 본문 */}
-      <div className="border border-gray-300 p-8 print:border-none print:p-10">
+      <div className="border border-border p-8 print:border-none print:p-10">
         <h1 className="mb-8 text-center text-2xl font-bold tracking-widest">거 래 명 세 서</h1>
 
         {/* 발행 정보 */}
@@ -116,44 +116,44 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
           </div>
           <div className="text-right">
             <p className="font-medium">곁에 (yourside)</p>
-            <p className="text-xs text-gray-500">부울경 로컬 인력매칭 플랫폼</p>
+            <p className="text-xs text-text-muted">부울경 로컬 인력매칭 플랫폼</p>
           </div>
         </div>
 
-        <hr className="mb-6 border-gray-300" />
+        <hr className="mb-6 border-border" />
 
         {/* 거래 정보 */}
         <div className="mb-6">
-          <h2 className="mb-2 text-sm font-bold text-gray-700">거래 정보</h2>
+          <h2 className="mb-2 text-sm font-bold text-text">거래 정보</h2>
           <table className="w-full text-sm">
             <tbody>
-              <tr className="border-b border-gray-200">
-                <td className="w-28 py-2 font-medium text-gray-600">의뢰 제목</td>
+              <tr className="border-b border-border-light">
+                <td className="w-28 py-2 font-medium text-text-muted">의뢰 제목</td>
                 <td className="py-2">{requestTitle || '-'}</td>
               </tr>
-              <tr className="border-b border-gray-200">
-                <td className="py-2 font-medium text-gray-600">담당 파트너</td>
+              <tr className="border-b border-border-light">
+                <td className="py-2 font-medium text-text-muted">담당 파트너</td>
                 <td className="py-2">{partnerName}{partnerField ? ` (${partnerField})` : ''}</td>
               </tr>
-              <tr className="border-b border-gray-200">
-                <td className="py-2 font-medium text-gray-600">거래 상태</td>
+              <tr className="border-b border-border-light">
+                <td className="py-2 font-medium text-text-muted">거래 상태</td>
                 <td className="py-2">{statusLabels[deal.status] || deal.status}</td>
               </tr>
               {settlement && (
-                <tr className="border-b border-gray-200">
-                  <td className="py-2 font-medium text-gray-600">정산 상태</td>
+                <tr className="border-b border-border-light">
+                  <td className="py-2 font-medium text-text-muted">정산 상태</td>
                   <td className="py-2">{escrowLabels[settlement.escrow_status] || settlement.escrow_status}</td>
                 </tr>
               )}
               {settlement?.deposited_at && (
-                <tr className="border-b border-gray-200">
-                  <td className="py-2 font-medium text-gray-600">입금일</td>
+                <tr className="border-b border-border-light">
+                  <td className="py-2 font-medium text-text-muted">입금일</td>
                   <td className="py-2">{new Date(settlement.deposited_at).toLocaleDateString('ko-KR')}</td>
                 </tr>
               )}
               {settlement?.released_at && (
-                <tr className="border-b border-gray-200">
-                  <td className="py-2 font-medium text-gray-600">정산일</td>
+                <tr className="border-b border-border-light">
+                  <td className="py-2 font-medium text-text-muted">정산일</td>
                   <td className="py-2">{new Date(settlement.released_at).toLocaleDateString('ko-KR')}</td>
                 </tr>
               )}
@@ -163,32 +163,32 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
 
         {/* 금액 명세 */}
         <div className="mb-6">
-          <h2 className="mb-2 text-sm font-bold text-gray-700">금액 명세</h2>
+          <h2 className="mb-2 text-sm font-bold text-text">금액 명세</h2>
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b-2 border-gray-400 bg-gray-50">
+              <tr className="border-b-2 border-border bg-surface">
                 <th className="py-2 text-left font-medium">항목</th>
                 <th className="py-2 text-center font-medium">비고</th>
                 <th className="py-2 text-right font-medium">금액</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-border-light">
                 <td className="py-2">작업료</td>
-                <td className="py-2 text-center text-xs text-gray-500">파트너 지급액</td>
+                <td className="py-2 text-center text-xs text-text-muted">파트너 지급액</td>
                 <td className="py-2 text-right">{deal.work_fee.toLocaleString('ko-KR')}원</td>
               </tr>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-border-light">
                 <td className="py-2">매칭비</td>
-                <td className="py-2 text-center text-xs text-gray-500">곁에 중개 수수료</td>
+                <td className="py-2 text-center text-xs text-text-muted">곁에 중개 수수료</td>
                 <td className="py-2 text-right">{deal.match_fee.toLocaleString('ko-KR')}원</td>
               </tr>
-              <tr className="border-b border-gray-300 bg-gray-50 font-bold">
+              <tr className="border-b border-border bg-surface font-bold">
                 <td className="py-2">소계 (VAT 별도)</td>
                 <td className="py-2"></td>
                 <td className="py-2 text-right">{deal.total_pay.toLocaleString('ko-KR')}원</td>
               </tr>
-              <tr className="border-b border-gray-200 text-gray-500">
+              <tr className="border-b border-border-light text-text-muted">
                 <td className="py-2">부가세 (10%)</td>
                 <td className="py-2"></td>
                 <td className="py-2 text-right">{vat.toLocaleString('ko-KR')}원</td>
@@ -199,7 +199,7 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
                 <td className="py-3 text-right">{(deal.total_pay + vat).toLocaleString('ko-KR')}원</td>
               </tr>
               {settlement && settlement.refunded_amt > 0 && (
-                <tr className="border-t border-gray-300 text-red-600">
+                <tr className="border-t border-border text-error">
                   <td className="py-2">환불액</td>
                   <td className="py-2 text-center text-xs">{settlement.refund_reason || '-'}</td>
                   <td className="py-2 text-right">-{settlement.refunded_amt.toLocaleString('ko-KR')}원</td>
@@ -210,10 +210,10 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
         </div>
 
         {/* 안내 */}
-        <div className="rounded bg-gray-50 p-4 text-xs text-gray-500">
-          <p className="mb-1">• 본 거래명세서는 곁에 플랫폼을 통해 자동 생성되었습니다.</p>
-          <p className="mb-1">• 작업료는 에스크로(안전결제) 방식으로 처리됩니다.</p>
-          <p>• 문의: 곁에 매니저 (카카오 채널)</p>
+        <div className="rounded-lg bg-surface p-4 text-xs text-text-muted">
+          <p className="mb-1">본 거래명세서는 곁에 플랫폼을 통해 자동 생성되었습니다.</p>
+          <p className="mb-1">작업료는 에스크로(안전결제) 방식으로 처리됩니다.</p>
+          <p>문의: 곁에 매니저 (카카오 채널)</p>
         </div>
       </div>
     </div>

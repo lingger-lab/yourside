@@ -26,16 +26,16 @@ export default async function Home() {
   return (
     <div className="flex flex-1 flex-col">
       {/* 상단 헤더 바 */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-border-light bg-background/80 backdrop-blur-lg">
         <div className="mx-auto flex h-14 max-w-md items-center justify-between px-4">
-          <Link href="/" className="text-xl font-bold text-primary">곁에</Link>
+          <Link href="/" className="text-xl font-bold text-primary tracking-tight">곁에</Link>
           {user ? (
             <div className="flex items-center gap-2">
               <Link
                 href={hasPartner ? '/mypage' : '/request'}
                 className="flex items-center gap-2"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">
                   {(user.user_metadata?.full_name || user.email || '?')[0].toUpperCase()}
                 </div>
                 <span className="text-sm font-medium text-text">
@@ -45,7 +45,7 @@ export default async function Home() {
               <form action={signOut}>
                 <button
                   type="submit"
-                  className="rounded-md border border-border px-2.5 py-1 text-xs text-text-muted hover:bg-surface hover:text-text"
+                  className="rounded-md border border-border-light px-2.5 py-1 text-xs text-text-muted hover:bg-surface hover:text-text transition-colors"
                 >
                   로그아웃
                 </button>
@@ -55,7 +55,7 @@ export default async function Home() {
             <form action={signInWithGoogle.bind(null, 'client')}>
               <button
                 type="submit"
-                className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-white hover:bg-primary-light"
+                className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-primary-light transition-colors btn-press"
               >
                 <GoogleIcon className="h-4 w-4" />
                 로그인
@@ -69,8 +69,8 @@ export default async function Home() {
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-10">
         <main className="flex w-full max-w-md flex-col items-center gap-10 text-center">
           {/* 히어로 */}
-          <section className="flex flex-col items-center gap-3">
-            <h1 className="text-5xl font-bold tracking-tight text-primary">
+          <section className="flex flex-col items-center gap-3 animate-fade-in">
+            <h1 className="text-4xl font-bold tracking-tight text-primary">
               곁에
             </h1>
             <p className="text-lg leading-relaxed text-text-muted">
@@ -83,7 +83,7 @@ export default async function Home() {
           {/* 역할 카드 */}
           <section className="flex w-full flex-col gap-4">
             {/* 사장님 카드 */}
-            <div className="rounded-2xl border border-border bg-white p-6 text-left">
+            <div className="rounded-2xl bg-white p-6 text-left shadow-sm card-hover animate-fade-in stagger-1">
               <h2 className="text-xl font-bold text-primary">사장님</h2>
               <p className="mt-1 text-sm text-text-muted">
                 검증된 파트너에게 일을 맡기세요
@@ -92,14 +92,14 @@ export default async function Home() {
                 <div className="mt-4 flex gap-2">
                   <Link
                     href="/request"
-                    className="flex h-12 flex-1 items-center justify-center rounded-xl bg-primary text-base font-semibold text-white transition-colors hover:bg-primary-light"
+                    className="flex h-12 flex-1 items-center justify-center rounded-xl bg-primary text-base font-semibold text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
                   >
                     {hasClient ? '일 맡기기' : '사장님으로 시작하기'}
                   </Link>
                   {hasClient && (
                     <Link
                       href="/status"
-                      className="flex h-12 items-center justify-center rounded-xl border border-border px-4 text-sm font-medium text-text-muted transition-colors hover:bg-surface hover:text-text"
+                      className="flex h-12 items-center justify-center rounded-xl border border-border-light px-4 text-sm font-medium text-text-muted transition-colors hover:bg-surface hover:text-text"
                     >
                       의뢰 현황
                     </Link>
@@ -109,7 +109,7 @@ export default async function Home() {
                 <form action={signInWithGoogle.bind(null, 'client')} className="mt-4">
                   <button
                     type="submit"
-                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-semibold text-white transition-colors hover:bg-primary-light"
+                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-semibold text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
                   >
                     <GoogleIcon />
                     Google로 시작하기
@@ -119,7 +119,7 @@ export default async function Home() {
             </div>
 
             {/* 파트너 카드 */}
-            <div className="rounded-2xl border border-border bg-white p-6 text-left">
+            <div className="rounded-2xl bg-white p-6 text-left shadow-sm card-hover animate-fade-in stagger-2">
               <h2 className="text-xl font-bold text-accent">파트너</h2>
               <p className="mt-1 text-sm text-text-muted">
                 경험으로 일하고, 정당한 대가를 받으세요
@@ -128,14 +128,14 @@ export default async function Home() {
                 <div className="mt-4 flex gap-2">
                   <Link
                     href={hasPartner ? '/matching' : '/register'}
-                    className="flex h-12 flex-1 items-center justify-center rounded-xl border-2 border-accent text-base font-semibold text-accent transition-colors hover:bg-accent/5"
+                    className="flex h-12 flex-1 items-center justify-center rounded-xl border-2 border-accent text-base font-semibold text-accent transition-colors hover:bg-accent/5 btn-press"
                   >
                     {hasPartner ? '파트너 영역 가기' : '파트너로 등록하기'}
                   </Link>
                   {hasPartner && (
                     <Link
                       href="/mypage"
-                      className="flex h-12 items-center justify-center rounded-xl border border-border px-4 text-sm font-medium text-text-muted transition-colors hover:bg-surface hover:text-text"
+                      className="flex h-12 items-center justify-center rounded-xl border border-border-light px-4 text-sm font-medium text-text-muted transition-colors hover:bg-surface hover:text-text"
                     >
                       마이페이지
                     </Link>
@@ -145,7 +145,7 @@ export default async function Home() {
                 <form action={signInWithGoogle.bind(null, 'partner')} className="mt-4">
                   <button
                     type="submit"
-                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-primary text-base font-semibold text-primary transition-colors hover:bg-surface"
+                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-accent text-base font-semibold text-accent transition-colors hover:bg-accent/5 btn-press"
                   >
                     <GoogleIcon />
                     Google로 시작하기
@@ -156,10 +156,22 @@ export default async function Home() {
           </section>
 
           {/* 신뢰 근거 */}
-          <section className="flex flex-col gap-2 text-sm text-text-muted">
-            <p>곁에 3인 검토진이 직접 검증합니다</p>
-            <p>사장님 작업료 0% 수수료 · 에스크로 안전결제</p>
-            <p>파트너 작업료 100% 수령</p>
+          <section className="w-full rounded-xl border border-border-light bg-surface-warm p-5 text-left animate-fade-in stagger-3">
+            <h3 className="mb-3 text-xs font-semibold tracking-wide text-text-subtle uppercase">곁에가 약속합니다</h3>
+            <ul className="flex flex-col gap-2 text-sm text-text-muted">
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                곁에 3인 검토진이 직접 검증합니다
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                사장님 작업료 0% 수수료 · 에스크로 안전결제
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                파트너 작업료 100% 수령
+              </li>
+            </ul>
           </section>
 
           {/* 곁에 매니저 문의 */}

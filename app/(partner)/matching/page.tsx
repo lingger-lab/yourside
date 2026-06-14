@@ -12,9 +12,9 @@ const STATUS_LABELS: Record<MatchingStatus, string> = {
 }
 
 const STATUS_COLORS: Record<MatchingStatus, string> = {
-  proposed: 'bg-blue-100 text-blue-700',
-  accepted: 'bg-green-100 text-green-700',
-  rejected: 'bg-gray-100 text-gray-500',
+  proposed: 'bg-info-light text-info',
+  accepted: 'bg-success-light text-success',
+  rejected: 'bg-surface text-text-subtle',
 }
 
 export default async function MatchingListPage() {
@@ -46,23 +46,23 @@ export default async function MatchingListPage() {
   }>
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8">
+    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
       <h1 className="mb-6 text-2xl font-bold text-accent">매칭 제안</h1>
 
       {matchingList.length === 0 ? (
         <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
           <p className="text-text-muted">아직 매칭 제안이 없습니다.</p>
-          <p className="text-xs text-text-muted">
+          <p className="text-xs text-text-subtle">
             곁에 매니저가 적합한 의뢰를 연결해드립니다.
           </p>
         </div>
       ) : (
         <ul className="flex flex-col gap-3">
-          {matchingList.map((m) => (
-            <li key={m.id}>
+          {matchingList.map((m, i) => (
+            <li key={m.id} className={`animate-fade-in stagger-${Math.min(i + 1, 5)}`}>
               <Link
                 href={`/matching/${m.id}`}
-                className="block rounded-lg border border-border p-4 transition-colors hover:border-accent/50"
+                className="block rounded-xl border border-border-light p-4 shadow-xs card-hover"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">

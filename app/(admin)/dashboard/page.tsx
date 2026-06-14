@@ -96,15 +96,15 @@ export default async function AdminDashboardPage() {
     .limit(50)
 
   return (
-    <div className="px-6 py-8">
+    <div className="px-6 py-8 animate-fade-in">
       <h1 className="mb-6 text-xl font-bold text-text">대시보드</h1>
 
       {/* 요약 카드 */}
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-5">
-        <SummaryCard label="매칭 대기" value={summary.matchingWaiting} unit="건" color="text-blue-600" />
-        <SummaryCard label="진행 중" value={summary.inProgress} unit="건" color="text-yellow-600" />
-        <SummaryCard label="정산 대기" value={summary.settlementReady} unit="건" color="text-green-600" />
-        <SummaryCard label="문의" value={summary.inquiryOpen} unit="건" color="text-red-600" />
+        <SummaryCard label="매칭 대기" value={summary.matchingWaiting} unit="건" color="text-info" />
+        <SummaryCard label="진행 중" value={summary.inProgress} unit="건" color="text-warning" />
+        <SummaryCard label="정산 대기" value={summary.settlementReady} unit="건" color="text-success" />
+        <SummaryCard label="문의" value={summary.inquiryOpen} unit="건" color="text-error" />
         <SummaryCard
           label="적립금 잔액"
           value={summary.guaranteeFundBalance.toLocaleString('ko-KR')}
@@ -189,7 +189,7 @@ function SummaryCard({
   color: string
 }) {
   return (
-    <div className="rounded-lg border border-border bg-surface p-4 text-center">
+    <div className="rounded-xl border border-border-light bg-surface p-4 text-center shadow-sm card-hover">
       <p className="text-xs text-text-muted">{label}</p>
       <p className={`mt-1 text-2xl font-bold ${color}`}>
         {value}

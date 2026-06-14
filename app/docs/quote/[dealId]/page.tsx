@@ -21,7 +21,7 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
     .single()
 
   if (!deal) {
-    return <div className="p-10 text-center text-gray-500">견적서를 찾을 수 없습니다.</div>
+    return <div className="p-10 text-center text-text-muted">견적서를 찾을 수 없습니다.</div>
   }
 
   // 소유권 확인 (client 또는 admin)
@@ -85,7 +85,7 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
       </div>
 
       {/* 견적서 본문 */}
-      <div className="border border-gray-300 p-8 print:border-none print:p-10">
+      <div className="border border-border p-8 print:border-none print:p-10">
         {/* 제목 */}
         <h1 className="mb-8 text-center text-2xl font-bold tracking-widest">견 적 서</h1>
 
@@ -97,38 +97,38 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
           </div>
           <div className="text-right">
             <p className="font-medium">곁에 (yourside)</p>
-            <p className="text-xs text-gray-500">부울경 로컬 인력매칭 플랫폼</p>
+            <p className="text-xs text-text-muted">부울경 로컬 인력매칭 플랫폼</p>
           </div>
         </div>
 
-        <hr className="mb-6 border-gray-300" />
+        <hr className="mb-6 border-border" />
 
         {/* 의뢰 정보 */}
         <div className="mb-6">
-          <h2 className="mb-2 text-sm font-bold text-gray-700">의뢰 정보</h2>
+          <h2 className="mb-2 text-sm font-bold text-text">의뢰 정보</h2>
           <table className="w-full text-sm">
             <tbody>
-              <tr className="border-b border-gray-200">
-                <td className="w-28 py-2 font-medium text-gray-600">의뢰 제목</td>
+              <tr className="border-b border-border-light">
+                <td className="w-28 py-2 font-medium text-text-muted">의뢰 제목</td>
                 <td className="py-2">{requestTitle || '-'}</td>
               </tr>
-              <tr className="border-b border-gray-200">
-                <td className="py-2 font-medium text-gray-600">의뢰 내용</td>
+              <tr className="border-b border-border-light">
+                <td className="py-2 font-medium text-text-muted">의뢰 내용</td>
                 <td className="py-2 whitespace-pre-wrap">{requestDetail || '-'}</td>
               </tr>
-              <tr className="border-b border-gray-200">
-                <td className="py-2 font-medium text-gray-600">담당 파트너</td>
+              <tr className="border-b border-border-light">
+                <td className="py-2 font-medium text-text-muted">담당 파트너</td>
                 <td className="py-2">{partnerName}</td>
               </tr>
               {deal.scope && (
-                <tr className="border-b border-gray-200">
-                  <td className="py-2 font-medium text-gray-600">작업 범위</td>
+                <tr className="border-b border-border-light">
+                  <td className="py-2 font-medium text-text-muted">작업 범위</td>
                   <td className="py-2">{deal.scope}</td>
                 </tr>
               )}
               {deal.due_date && (
-                <tr className="border-b border-gray-200">
-                  <td className="py-2 font-medium text-gray-600">납기일</td>
+                <tr className="border-b border-border-light">
+                  <td className="py-2 font-medium text-text-muted">납기일</td>
                   <td className="py-2">{new Date(deal.due_date).toLocaleDateString('ko-KR')}</td>
                 </tr>
               )}
@@ -138,28 +138,28 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
 
         {/* 금액 */}
         <div className="mb-6">
-          <h2 className="mb-2 text-sm font-bold text-gray-700">견적 금액</h2>
+          <h2 className="mb-2 text-sm font-bold text-text">견적 금액</h2>
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b-2 border-gray-400 bg-gray-50">
+              <tr className="border-b-2 border-border bg-surface">
                 <th className="py-2 text-left font-medium">항목</th>
                 <th className="py-2 text-right font-medium">금액</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-border-light">
                 <td className="py-2">작업료</td>
                 <td className="py-2 text-right">{deal.work_fee.toLocaleString('ko-KR')}원</td>
               </tr>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-border-light">
                 <td className="py-2">매칭비 (곁에 수수료)</td>
                 <td className="py-2 text-right">{deal.match_fee.toLocaleString('ko-KR')}원</td>
               </tr>
-              <tr className="border-b border-gray-300 bg-gray-50 font-bold">
+              <tr className="border-b border-border bg-surface font-bold">
                 <td className="py-2">합계 (VAT 별도)</td>
                 <td className="py-2 text-right">{deal.total_pay.toLocaleString('ko-KR')}원</td>
               </tr>
-              <tr className="border-b border-gray-200 text-gray-500">
+              <tr className="border-b border-border-light text-text-muted">
                 <td className="py-2">부가세 (10%)</td>
                 <td className="py-2 text-right">{vat.toLocaleString('ko-KR')}원</td>
               </tr>
@@ -172,11 +172,11 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
         </div>
 
         {/* 안내 */}
-        <div className="rounded bg-gray-50 p-4 text-xs text-gray-500">
-          <p className="mb-1">• 본 견적서는 곁에 플랫폼을 통해 자동 생성되었습니다.</p>
-          <p className="mb-1">• 작업료는 에스크로 방식으로 안전하게 보관됩니다.</p>
-          <p className="mb-1">• 파트너 작업료 수수료 0% — 작업료 전액이 파트너에게 지급됩니다.</p>
-          <p>• 매칭비는 곁에 플랫폼 중개 수수료입니다.</p>
+        <div className="rounded-lg bg-surface p-4 text-xs text-text-muted">
+          <p className="mb-1">본 견적서는 곁에 플랫폼을 통해 자동 생성되었습니다.</p>
+          <p className="mb-1">작업료는 에스크로 방식으로 안전하게 보관됩니다.</p>
+          <p className="mb-1">파트너 작업료 수수료 0% — 작업료 전액이 파트너에게 지급됩니다.</p>
+          <p>매칭비는 곁에 플랫폼 중개 수수료입니다.</p>
         </div>
       </div>
     </div>

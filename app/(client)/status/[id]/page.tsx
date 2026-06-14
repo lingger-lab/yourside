@@ -86,9 +86,9 @@ export default async function StatusDetailPage(props: PageProps) {
   const remainingHours = Math.max(0, Math.ceil(remainingMs / (1000 * 60 * 60)))
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8">
+    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
       {/* 뒤로가기 */}
-      <Link href="/status" className="mb-4 text-sm text-text-muted hover:text-text">
+      <Link href="/status" className="mb-4 text-sm text-text-muted hover:text-text transition-colors">
         &larr; 의뢰 목록
       </Link>
 
@@ -106,13 +106,13 @@ export default async function StatusDetailPage(props: PageProps) {
 
       {/* 상태별 콘텐츠 */}
       {req.status === 'open' && (
-        <div className="rounded-lg border border-border p-4">
+        <div className="rounded-xl border border-border-light p-4 shadow-xs">
           <h2 className="mb-2 font-semibold text-text">접수 완료</h2>
           <p className="text-sm text-text-muted">
             곁에 매니저가 의뢰를 확인하고 적합한 파트너를 연결해드립니다.
           </p>
           {remainingHours > 0 && (
-            <p className="mt-3 text-sm font-medium text-primary">
+            <p className="mt-3 text-sm font-semibold text-accent">
               견적 기한: 약 {remainingHours}시간 남음
             </p>
           )}
@@ -120,7 +120,7 @@ export default async function StatusDetailPage(props: PageProps) {
       )}
 
       {req.status === 'matching' && (
-        <div className="rounded-lg border border-border p-4">
+        <div className="rounded-xl border border-border-light p-4 shadow-xs">
           <h2 className="mb-2 font-semibold text-text">파트너 연결 중</h2>
           <p className="text-sm text-text-muted">
             적합한 파트너를 찾고 있습니다. 곧 견적을 보내드리겠습니다.
@@ -136,7 +136,7 @@ export default async function StatusDetailPage(props: PageProps) {
       {/* 작업 진행 중 */}
       {deal && deal.status === 'working' && (
         <div className="flex flex-col gap-4">
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border-light p-4 shadow-xs">
             <h2 className="mb-2 font-semibold text-text">작업 진행 중</h2>
             {deal.due_date && (
               <p className="text-sm text-text-muted">
@@ -147,7 +147,7 @@ export default async function StatusDetailPage(props: PageProps) {
 
           {/* 워크플로우 5단계 현황 */}
           {workflows.length > 0 && (
-            <div className="rounded-lg border border-border p-4">
+            <div className="rounded-xl border border-border-light p-4 shadow-xs">
               <h3 className="mb-3 text-sm font-semibold text-text">작업 진행 단계</h3>
               <div className="flex flex-col gap-2">
                 {workflows.map((wf) => (
@@ -155,10 +155,10 @@ export default async function StatusDetailPage(props: PageProps) {
                     <span
                       className={`h-2 w-2 shrink-0 rounded-full ${
                         wf.status === 'done'
-                          ? 'bg-green-500'
+                          ? 'bg-success'
                           : wf.status === 'in_progress'
-                          ? 'bg-yellow-500'
-                          : 'bg-gray-300'
+                          ? 'bg-warning'
+                          : 'bg-border'
                       }`}
                     />
                     <span className="text-sm text-text">
@@ -180,9 +180,9 @@ export default async function StatusDetailPage(props: PageProps) {
 
       {/* 완료 */}
       {deal && deal.status === 'done' && (
-        <div className="rounded-lg border border-green-200 bg-green-50 p-4">
-          <h2 className="mb-2 font-semibold text-green-700">검수 완료</h2>
-          <p className="text-sm text-green-600">
+        <div className="rounded-xl border border-success/20 bg-success-light p-4">
+          <h2 className="mb-2 font-semibold text-success">검수 완료</h2>
+          <p className="text-sm text-success/80">
             작업이 완료되었습니다. 정산이 진행됩니다.
           </p>
         </div>
@@ -194,14 +194,14 @@ export default async function StatusDetailPage(props: PageProps) {
           <Link
             href={`/docs/quote/${deal.id}`}
             target="_blank"
-            className="rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-text-muted hover:bg-surface hover:text-text"
+            className="rounded-xl border border-border-light px-4 py-2.5 text-sm font-medium text-text-muted shadow-xs transition-all hover:bg-surface hover:text-text hover:shadow-sm"
           >
             견적서 보기
           </Link>
           <Link
             href={`/docs/statement/${deal.id}`}
             target="_blank"
-            className="rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-text-muted hover:bg-surface hover:text-text"
+            className="rounded-xl border border-border-light px-4 py-2.5 text-sm font-medium text-text-muted shadow-xs transition-all hover:bg-surface hover:text-text hover:shadow-sm"
           >
             거래명세서 보기
           </Link>
@@ -209,7 +209,7 @@ export default async function StatusDetailPage(props: PageProps) {
       )}
 
       {/* 의뢰 상세 내용 */}
-      <div className="mt-6 rounded-lg border border-border p-4">
+      <div className="mt-6 rounded-xl border border-border-light p-4 shadow-xs">
         <h3 className="mb-2 text-sm font-semibold text-text">의뢰 내용</h3>
         <p className="whitespace-pre-wrap text-sm text-text-muted">{req.detail}</p>
         {req.budget_hope && (

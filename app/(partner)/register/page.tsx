@@ -42,14 +42,14 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8">
+    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
       <h1 className="mb-2 text-2xl font-bold text-accent">파트너 등록</h1>
       <p className="mb-6 text-sm text-text-muted">
         곁에 파트너로 등록하고 의뢰를 받아보세요.
       </p>
 
       {/* 작업료 0% 수수료 강조 */}
-      <div className="mb-6 rounded-lg border border-accent/30 bg-accent/5 p-4 text-center">
+      <div className="mb-6 rounded-xl border border-accent/20 bg-surface-warm p-4 text-center shadow-sm">
         <p className="text-lg font-bold text-accent">작업료 0% 수수료</p>
         <p className="mt-1 text-xs text-text-muted">
           파트너님이 받는 작업료에서 수수료를 떼지 않습니다.
@@ -66,7 +66,7 @@ export default function RegisterPage() {
         {/* 전문 분야 */}
         <div>
           <label className="mb-2 block text-sm font-medium text-text">
-            전문 분야 <span className="text-accent">*</span>
+            전문 분야 <span className="text-error">*</span>
             <span className="ml-1 text-xs font-normal text-text-muted">(최대 5개)</span>
           </label>
           <div className="flex flex-wrap gap-2">
@@ -79,7 +79,7 @@ export default function RegisterPage() {
                 className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
                   selectedFields.includes(chip)
                     ? 'border-accent bg-accent/10 font-semibold text-accent'
-                    : 'border-border text-text-muted hover:border-accent/50'
+                    : 'border-border-light text-text-muted hover:border-accent/30'
                 }`}
               >
                 {chip}
@@ -92,12 +92,12 @@ export default function RegisterPage() {
         {/* 경력 */}
         <div>
           <label htmlFor="career_yrs" className="mb-1 block text-sm font-medium text-text">
-            경력 <span className="text-xs text-text-muted">(선택)</span>
+            경력 <span className="text-xs text-text-subtle">(선택)</span>
           </label>
           <select
             id="career_yrs"
             name="career_yrs"
-            className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-text focus:border-accent focus:outline-none"
+            className="w-full rounded-xl border border-border-light bg-background px-4 py-3 text-sm text-text focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
           >
             {CAREER_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -110,38 +110,38 @@ export default function RegisterPage() {
         {/* 이름 (선택) */}
         <div>
           <label htmlFor="name" className="mb-1 block text-sm font-medium text-text">
-            이름 <span className="text-xs text-text-muted">(선택)</span>
+            이름 <span className="text-xs text-text-subtle">(선택)</span>
           </label>
           <input
             id="name"
             name="name"
             type="text"
             placeholder="본명 또는 활동명"
-            className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+            className="w-full rounded-xl border border-border-light bg-background px-4 py-3 text-sm text-text placeholder:text-text-subtle focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
           />
         </div>
 
         {/* 연락처 (선택) */}
         <div>
           <label htmlFor="contact" className="mb-1 block text-sm font-medium text-text">
-            연락처 <span className="text-xs text-text-muted">(선택, 비공개)</span>
+            연락처 <span className="text-xs text-text-subtle">(선택, 비공개)</span>
           </label>
           <input
             id="contact"
             name="contact"
             type="text"
             placeholder="전화번호 또는 이메일"
-            className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+            className="w-full rounded-xl border border-border-light bg-background px-4 py-3 text-sm text-text placeholder:text-text-subtle focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
           />
         </div>
 
         {/* 에러 */}
         {state.error && (
-          <p className="text-sm text-accent">{state.error}</p>
+          <p className="text-sm text-error">{state.error}</p>
         )}
 
         {/* 제출 */}
-        <SubmitButton className="rounded-lg bg-accent px-6 py-3 font-semibold text-white transition-colors hover:bg-accent/90 disabled:opacity-50">
+        <SubmitButton className="rounded-xl bg-accent px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-accent/90 hover:shadow-md disabled:opacity-50">
           파트너 등록 완료
         </SubmitButton>
       </form>

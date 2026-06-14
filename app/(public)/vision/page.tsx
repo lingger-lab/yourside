@@ -41,7 +41,7 @@ function VisionContent() {
   const isPartner = role === 'partner'
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-6 py-12">
+    <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 animate-slide-up">
       <main className="flex w-full max-w-md flex-col items-center gap-8 text-center">
         <h1 className="whitespace-pre-line text-3xl font-bold leading-tight text-primary">
           {isPartner
@@ -74,19 +74,19 @@ function VisionContent() {
         <div className="flex w-full flex-col gap-3">
           <button
             onClick={handleContinue}
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-primary text-lg font-semibold text-white transition-colors hover:bg-primary-light"
+            className="flex h-14 w-full items-center justify-center rounded-xl bg-primary text-lg font-semibold text-white shadow-md transition-all hover:bg-primary-light hover:shadow-lg btn-press"
           >
             시작하기
           </button>
           <button
             onClick={handleSkip}
-            className="text-sm text-text-muted underline underline-offset-4"
+            className="text-sm text-text-muted underline underline-offset-4 transition-colors hover:text-text"
           >
             건너뛰기
           </button>
         </div>
 
-        <p className="text-xs leading-relaxed text-text-muted">
+        <p className="text-xs leading-relaxed text-text-subtle">
           ※ &quot;월 100만원&quot;은 수익을 보장하는 것이 아니라, 곁에가 함께
           지향하는 목표입니다. 실제 수입은 거래 건수와 내용에 따라 달라집니다.
         </p>
@@ -100,7 +100,7 @@ export default function VisionPage() {
     <Suspense
       fallback={
         <div className="flex flex-1 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent" />
         </div>
       }
     >

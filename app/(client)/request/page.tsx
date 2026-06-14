@@ -25,7 +25,7 @@ export default function RequestPage() {
   const [selectedChip, setSelectedChip] = useState<string | null>(null)
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8">
+    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
       <h1 className="mb-6 text-2xl font-bold text-primary">일 맡기기</h1>
 
       <form
@@ -48,8 +48,8 @@ export default function RequestPage() {
                 onClick={() => setSelectedChip(selectedChip === chip ? null : chip)}
                 className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
                   selectedChip === chip
-                    ? 'border-primary bg-primary/10 font-semibold text-primary'
-                    : 'border-border text-text-muted hover:border-primary/50'
+                    ? 'border-accent bg-accent/10 font-medium text-accent'
+                    : 'border-border-light text-text-muted hover:border-accent/30'
                 }`}
               >
                 {chip}
@@ -62,7 +62,7 @@ export default function RequestPage() {
         {/* 제목 */}
         <div>
           <label htmlFor="title" className="mb-1 block text-sm font-medium text-text">
-            의뢰 제목 <span className="text-accent">*</span>
+            의뢰 제목 <span className="text-error">*</span>
           </label>
           <input
             id="title"
@@ -70,14 +70,14 @@ export default function RequestPage() {
             type="text"
             required
             placeholder="예: 카페 로고 디자인 의뢰"
-            className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-primary focus:outline-none"
+            className="w-full rounded-xl border border-border-light bg-background px-4 py-3 text-sm text-text placeholder:text-text-subtle focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
           />
         </div>
 
         {/* 상세 내용 */}
         <div>
           <label htmlFor="detail" className="mb-1 block text-sm font-medium text-text">
-            상세 내용 <span className="text-accent">*</span>
+            상세 내용 <span className="text-error">*</span>
           </label>
           <textarea
             id="detail"
@@ -85,14 +85,14 @@ export default function RequestPage() {
             required
             rows={6}
             placeholder="원하시는 작업 내용을 자유롭게 적어주세요. 곁에 매니저가 확인 후 적합한 파트너를 연결해드립니다."
-            className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted focus:border-primary focus:outline-none"
+            className="w-full resize-none rounded-xl border border-border-light bg-background px-4 py-3 text-sm text-text placeholder:text-text-subtle focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
           />
         </div>
 
         {/* 희망 예산 (선택) */}
         <div>
           <label htmlFor="budget_hope" className="mb-1 block text-sm font-medium text-text">
-            희망 예산 <span className="text-xs text-text-muted">(선택)</span>
+            희망 예산 <span className="text-xs text-text-subtle">(선택)</span>
           </label>
           <div className="relative">
             <input
@@ -102,7 +102,7 @@ export default function RequestPage() {
               min="0"
               step="10000"
               placeholder="예: 500000"
-              className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-10 text-sm text-text placeholder:text-text-muted focus:border-primary focus:outline-none"
+              className="w-full rounded-xl border border-border-light bg-background px-4 py-3 pr-10 text-sm text-text placeholder:text-text-subtle focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
             />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-text-muted">
               원
@@ -112,11 +112,11 @@ export default function RequestPage() {
 
         {/* 에러 메시지 */}
         {state.error && (
-          <p className="text-sm text-accent">{state.error}</p>
+          <p className="text-sm text-error">{state.error}</p>
         )}
 
         {/* 제출 */}
-        <SubmitButton className="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary/90 disabled:opacity-50">
+        <SubmitButton className="rounded-xl bg-primary px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md disabled:opacity-50">
           의뢰 등록하기
         </SubmitButton>
       </form>
