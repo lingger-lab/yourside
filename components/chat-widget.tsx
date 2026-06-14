@@ -29,6 +29,13 @@ export function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  // 외부에서 챗봇 열기 (커스텀 이벤트)
+  useEffect(() => {
+    function handleOpen() { setIsOpen(true) }
+    window.addEventListener('open-chat-widget', handleOpen)
+    return () => window.removeEventListener('open-chat-widget', handleOpen)
+  }, [])
+
   async function sendMessage(question: string) {
     if (!question.trim()) return
 

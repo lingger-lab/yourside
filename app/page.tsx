@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { adminClient } from '@/lib/supabase/admin'
 import { signInWithGoogle, signOut } from '@/lib/auth/actions'
 import { GoogleIcon } from '@/components/icons/google'
+import { OpenChatButton } from '@/components/open-chat-button'
 
 export default async function Home() {
   const cookieStore = await cookies()
@@ -125,12 +126,7 @@ export default async function Home() {
         </section>
 
         {/* 곁에 매니저 문의 */}
-        <a
-          href="#"
-          className="text-sm font-medium text-accent underline underline-offset-4"
-        >
-          곁에 매니저에게 문의하기
-        </a>
+        <OpenChatButton />
       </main>
     </div>
   )
