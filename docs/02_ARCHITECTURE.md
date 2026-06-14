@@ -175,9 +175,9 @@ yourside/
 1. 사장님 일 맡기기 → POST /api/requests → request 생성(status: open)
 2. 관리자 대시보드 → GET /api/matching?request_id → 키워드 추천 후보
 3. 관리자 파트너 선택 → POST /api/matching → matching 생성(status: accepted 대기)
-4. 파트너 수락 → matching.status = accepted → deal 생성(견적 계산)
+4. 파트너 수락 → matching.status = accepted → deal 생성(견적 계산) + deal_workflow 5단계 자동 생성(pending)
 5. 사장님 승인+결제 → 토스 결제위젯 → webhook → settlement(escrow: deposited)
-6. 파트너 결과물 제출 → Supabase Storage 업로드 → deal.status = done 대기
+6. 파트너 작업 → 5단계 워크플로우 진행 갱신(intake→...→deliver) → 결과물 Storage 업로드 → deal.status = done 대기
 7. 사장님 검수 완료 → deal.status = done
 8. 관리자 정산 실행 → settlement(escrow: released) → 파트너 전달
 9. 관리자 곁에 검토 입력 → review 생성(곁에 평가 별점·의견)

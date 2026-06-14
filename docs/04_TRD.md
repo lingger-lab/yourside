@@ -32,6 +32,8 @@
 | PATCH | `/api/deals/:id/approve` | 사장님 승인 | 사장님 |
 | POST | `/api/deals/:id/submit` | 파트너 결과물 제출 | 파트너 |
 | PATCH | `/api/deals/:id/confirm` | 사장님 검수 완료 | 사장님 |
+| GET | `/api/deals/:id/workflow` | 공통 5단계 진행 조회 | 관련자 |
+| PATCH | `/api/deals/:id/workflow/:step` | 단계 상태 갱신(pending/in_progress/done) | 파트너 |
 
 ### 1.4 결제·정산
 | 메서드 | 경로 | 설명 | 권한 |
@@ -101,6 +103,14 @@ function calcReserveFee(matchFee: number): number {
 - 출력: 점수 내림차순 파트너 후보(상위 N) + 적합도(%) 표시용
 - **임베딩·외부 AI 호출 없음**. 순수 텍스트 매칭(MVP). 관리자 보조용, 고객 비노출.
 - 향후: 손매칭 결과를 학습 데이터로 축적(별도 테이블/로그) → 추후 고도화.
+
+## 3.5 공통 워크플로우 진행 (수준 1 최소)
+
+- deal 생성(파트너 수락) 시 `deal_workflow`에 공통 5단계(intake·structure·generate·verify·deliver) 행을 자동 생성(모두 status='pending').
+- 파트너가 작업현황에서 각 단계를 'in_progress'→'done'으로 갱신. PATCH /api/deals/:id/workflow/:step.
+- 관리자 대시보드 '진행 중'에서 단계별 상태 조회.
+- ⚠️ MVP는 도메인 구분 없는 공통 뼈대 1개. 단계별 AI 도구 임베드·도메인 설정은 Phase 2(수준 2). 즉 MVP는 '체크리스트 + 진행 추적'까지만.
+- 검수(deal confirm)와의 관계: deliver 단계 done → 결과물 제출 → 사장님 검수 흐름과 연결.
 
 ---
 
