@@ -1,1 +1,71 @@
 export type UserRole = 'client' | 'partner'
+
+// DB enum types
+export type RequestStatus = 'open' | 'matching' | 'dealt' | 'closed'
+export type DealStatus = 'quoted' | 'working' | 'done'
+export type EscrowStatus = 'pending' | 'deposited' | 'reviewing' | 'released' | 'refunded'
+export type WorkflowStep = 'intake' | 'structure' | 'generate' | 'verify' | 'deliver'
+export type StepStatus = 'pending' | 'in_progress' | 'done'
+
+// DB row types
+export interface RequestRow {
+  id: string
+  client_id: string
+  title: string
+  detail: string
+  req_type: string | null
+  scope: string | null
+  budget_hope: number | null
+  status: RequestStatus
+  created_at: string
+  updated_at: string
+}
+
+export interface DealRow {
+  id: string
+  matching_id: string | null
+  request_id: string | null
+  partner_id: string | null
+  work_fee: number
+  match_fee: number
+  total_pay: number
+  scope: string | null
+  due_date: string | null
+  status: DealStatus
+  created_at: string
+  updated_at: string
+}
+
+export interface SettlementRow {
+  id: string
+  deal_id: string
+  escrow_status: EscrowStatus
+  payment_key: string | null
+  guarantee_fee: number
+  refunded_amt: number
+  refund_reason: string | null
+  deposited_at: string | null
+  released_at: string | null
+  refunded_at: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface DealWorkflowRow {
+  id: string
+  deal_id: string
+  step: WorkflowStep
+  status: StepStatus
+  note: string | null
+  done_at: string | null
+  created_at: string
+}
+
+export interface PartnerRow {
+  id: string
+  auth_user_id: string
+  name: string | null
+  field: string | null
+  career_yrs: number | null
+  grade: string
+}

@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { ClientNav } from '@/components/client-nav'
 
 export default async function ClientLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies()
@@ -11,5 +12,10 @@ export default async function ClientLayout({ children }: { children: React.React
     redirect('/')
   }
 
-  return <>{children}</>
+  return (
+    <div className="flex min-h-screen flex-col pb-14">
+      {children}
+      <ClientNav />
+    </div>
+  )
 }
