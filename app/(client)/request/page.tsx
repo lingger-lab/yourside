@@ -28,7 +28,13 @@ export default function RequestPage() {
     <div className="flex flex-1 flex-col px-6 py-8">
       <h1 className="mb-6 text-2xl font-bold text-primary">일 맡기기</h1>
 
-      <form action={formAction} className="flex flex-col gap-5">
+      <form
+        action={formAction}
+        onSubmit={(e) => {
+          if (!confirm('의뢰를 등록하시겠습니까?')) e.preventDefault()
+        }}
+        className="flex flex-col gap-5"
+      >
         {/* 퀵칩 — req_type 선택 */}
         <div>
           <label className="mb-2 block text-sm font-medium text-text">

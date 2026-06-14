@@ -106,7 +106,13 @@ export default function MyPage() {
         </div>
       </div>
 
-      <form action={formAction} className="flex flex-col gap-5">
+      <form
+        action={formAction}
+        onSubmit={(e) => {
+          if (!confirm('프로필을 수정하시겠습니까?')) e.preventDefault()
+        }}
+        className="flex flex-col gap-5"
+      >
         <input type="hidden" name="redirect_to" value="/mypage" />
         {/* 전문 분야 */}
         <div>

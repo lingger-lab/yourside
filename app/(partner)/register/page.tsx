@@ -56,7 +56,13 @@ export default function RegisterPage() {
         </p>
       </div>
 
-      <form action={formAction} className="flex flex-col gap-5">
+      <form
+        action={formAction}
+        onSubmit={(e) => {
+          if (!confirm('파트너 등록을 완료하시겠습니까?')) e.preventDefault()
+        }}
+        className="flex flex-col gap-5"
+      >
         {/* 전문 분야 */}
         <div>
           <label className="mb-2 block text-sm font-medium text-text">
