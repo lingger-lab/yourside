@@ -29,7 +29,17 @@ const CAREER_OPTIONS = [
 
 export default function RegisterPage() {
   const [state, formAction] = useActionState(updatePartnerProfile, {})
-  const [selectedField, setSelectedField] = useState<string | null>(null)
+  const [selectedFields, setSelectedFields] = useState<string[]>([])
+
+  function toggleField(chip: string) {
+    setSelectedFields((prev) =>
+      prev.includes(chip)
+        ? prev.filter((f) => f !== chip)
+        : prev.length < 5
+          ? [...prev, chip]
+          : prev
+    )
+  }
 
   return (
     <div className="flex flex-1 flex-col px-6 py-8">
@@ -51,15 +61,16 @@ export default function RegisterPage() {
         <div>
           <label className="mb-2 block text-sm font-medium text-text">
             전문 분야 <span className="text-accent">*</span>
+            <span className="ml-1 text-xs font-normal text-text-muted">(최대 5개)</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {FIELD_CHIPS.map((chip) => (
               <button
                 key={chip}
                 type="button"
-                onClick={() => setSelectedField(selectedField === chip ? null : chip)}
+                onClick={() => toggleField(chip)}
                 className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
-                  selectedField === chip
+                  selectedFields.includes(chip)
                     ? 'border-accent bg-accent/10 font-semibold text-accent'
                     : 'border-border text-text-muted hover:border-accent/50'
                 }`}
@@ -68,7 +79,7 @@ export default function RegisterPage() {
               </button>
             ))}
           </div>
-          <input type="hidden" name="field" value={selectedField || ''} />
+          <input type="hidden" name="field" value={selectedFields.join(',')} />
         </div>
 
         {/* 경력 */}

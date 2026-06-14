@@ -41,7 +41,17 @@ export default function MyPage() {
   const [state, formAction] = useActionState(updatePartnerProfile, {})
   const [profile, setProfile] = useState<PartnerProfile | null>(null)
   const [loading, setLoading] = useState(true)
-  const [selectedField, setSelectedField] = useState<string | null>(null)
+  const [selectedFields, setSelectedFields] = useState<string[]>([])
+
+  function toggleField(chip: string) {
+    setSelectedFields((prev) =>
+      prev.includes(chip)
+        ? prev.filter((f) => f !== chip)
+        : prev.length < 5
+          ? [...prev, chip]
+          : prev
+    )
+  }
 
   useEffect(() => {
     fetch('/api/partner/profile')
@@ -49,7 +59,7 @@ export default function MyPage() {
       .then((data) => {
         if (data.partner) {
           setProfile(data.partner)
-          setSelectedField(data.partner.field)
+          setSelectedFields(data.partner.field ? data.partner.field.split(',') : [])
         }
         setLoading(false)
       })
@@ -96,26 +106,22 @@ export default function MyPage() {
         </div>
       </div>
 
-      {/* 수정 성공 메시지 */}
-      {state.error === undefined && state.error !== undefined && (
-        <p className="mb-4 text-sm text-green-600">프로필이 수정되었습니다.</p>
-      )}
-
       <form action={formAction} className="flex flex-col gap-5">
         <input type="hidden" name="redirect_to" value="/mypage" />
         {/* 전문 분야 */}
         <div>
           <label className="mb-2 block text-sm font-medium text-text">
             전문 분야 <span className="text-accent">*</span>
+            <span className="ml-1 text-xs font-normal text-text-muted">(최대 5개)</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {FIELD_CHIPS.map((chip) => (
               <button
                 key={chip}
                 type="button"
-                onClick={() => setSelectedField(selectedField === chip ? null : chip)}
+                onClick={() => toggleField(chip)}
                 className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
-                  selectedField === chip
+                  selectedFields.includes(chip)
                     ? 'border-accent bg-accent/10 font-semibold text-accent'
                     : 'border-border text-text-muted hover:border-accent/50'
                 }`}
@@ -124,7 +130,7 @@ export default function MyPage() {
               </button>
             ))}
           </div>
-          <input type="hidden" name="field" value={selectedField || ''} />
+          <input type="hidden" name="field" value={selectedFields.join(',')} />
         </div>
 
         {/* 경력 */}
