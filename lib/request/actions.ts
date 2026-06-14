@@ -35,15 +35,25 @@ export async function createRequest(
     return { error: '의뢰 내용을 입력해주세요.' }
   }
 
-  // client_id 조회
-  const { data: client } = await adminClient
+  // client_id 조회 (없으면 자동 생성 — 파트너가 사장님 역할도 사용하는 경우)
+  let { data: client } = await adminClient
     .from('client')
     .select('id')
     .eq('auth_user_id', user.id)
     .single()
 
   if (!client) {
-    return { error: '사장님 계정 정보를 찾을 수 없습니다.' }
+    const provider = (user.app_metadata?.provider as string) || 'google'
+    const { data: newClient } = await adminClient
+      .from('client')
+      .insert({ auth_user_id: user.id, provider, email: user.email! })
+      .select('id')
+      .single()
+    client = newClient
+  }
+
+  if (!client) {
+    return { error: '계정 생성에 실패했습니다. 다시 시도해주세요.' }
   }
 
   const { error } = await adminClient.from('request').insert({
