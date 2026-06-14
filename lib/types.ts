@@ -113,3 +113,18 @@ export interface GuaranteeFundLedgerRow {
   note: string | null
   created_at: string
 }
+
+// Inquiry
+export type InquiryStatus = 'open' | 'ai_answered' | 'human_routed' | 'closed'
+export type ManagerName = 'park' | 'brad' | 'kim'
+
+export interface InquiryRow {
+  id: string
+  author_id: string | null
+  author_type: ReviewAuthorType | null
+  category: string | null
+  content: string
+  status: InquiryStatus
+  created_at: string
+  updated_at: string
+}

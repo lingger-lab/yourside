@@ -6,6 +6,7 @@ import type { DealWorkflowRow } from '@/lib/types'
 import { MatchingTab } from './matching-tab'
 import { ProgressTab } from './progress-tab'
 import { SettlementTab } from './settlement-tab'
+import { InquiryTab } from './inquiry-tab'
 import { DashboardTabs } from './dashboard-tabs'
 
 export default async function AdminDashboardPage() {
@@ -16,12 +17,13 @@ export default async function AdminDashboardPage() {
   if (!user) redirect('/')
 
   // 요약 카운트
-  const [requestsRes, dealsRes, settlementsRes, accrueRes, payoutRes] = await Promise.all([
+  const [requestsRes, dealsRes, settlementsRes, accrueRes, payoutRes, inquiryRes] = await Promise.all([
     adminClient.from('request').select('id', { count: 'exact', head: true }).eq('status', 'open'),
     adminClient.from('deal').select('id', { count: 'exact', head: true }).eq('status', 'working'),
     adminClient.from('settlement').select('id', { count: 'exact', head: true }).in('escrow_status', ['deposited', 'reviewing']),
     adminClient.from('guarantee_fund_ledger').select('amount').eq('entry_type', 'accrue'),
     adminClient.from('guarantee_fund_ledger').select('amount').eq('entry_type', 'payout'),
+    adminClient.from('inquiry').select('id', { count: 'exact', head: true }).in('status', ['open', 'human_routed']),
   ])
 
   const accrueTotal = (accrueRes.data || []).reduce((sum, r) => sum + (r.amount || 0), 0)
@@ -32,6 +34,7 @@ export default async function AdminDashboardPage() {
     inProgress: dealsRes.count || 0,
     settlementReady: settlementsRes.count || 0,
     guaranteeFundBalance: accrueTotal - payoutTotal,
+    inquiryOpen: inquiryRes.count || 0,
   }
 
   // 매칭 대기 의뢰
@@ -85,15 +88,23 @@ export default async function AdminDashboardPage() {
     .order('created_at', { ascending: false })
     .limit(10)
 
+  // 문의 목록
+  const { data: inquiries } = await adminClient
+    .from('inquiry')
+    .select('id, author_type, category, content, status, created_at')
+    .order('created_at', { ascending: false })
+    .limit(50)
+
   return (
     <div className="px-6 py-8">
       <h1 className="mb-6 text-xl font-bold text-text">대시보드</h1>
 
       {/* 요약 카드 */}
-      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-5">
         <SummaryCard label="매칭 대기" value={summary.matchingWaiting} unit="건" color="text-blue-600" />
         <SummaryCard label="진행 중" value={summary.inProgress} unit="건" color="text-yellow-600" />
         <SummaryCard label="정산 대기" value={summary.settlementReady} unit="건" color="text-green-600" />
+        <SummaryCard label="문의" value={summary.inquiryOpen} unit="건" color="text-red-600" />
         <SummaryCard
           label="적립금 잔액"
           value={summary.guaranteeFundBalance.toLocaleString('ko-KR')}
@@ -147,6 +158,18 @@ export default async function AdminDashboardPage() {
               created_at: string
             }>}
             fundBalance={summary.guaranteeFundBalance}
+          />
+        }
+        inquiryTab={
+          <InquiryTab
+            inquiries={(inquiries || []) as unknown as Array<{
+              id: string
+              author_type: string | null
+              category: string | null
+              content: string
+              status: string
+              created_at: string
+            }>}
           />
         }
       />

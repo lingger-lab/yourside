@@ -6,6 +6,7 @@ const TABS = [
   { key: 'matching', label: '매칭 대기' },
   { key: 'progress', label: '진행 중' },
   { key: 'settlement', label: '정산 관리' },
+  { key: 'inquiry', label: '문의' },
 ] as const
 
 type TabKey = (typeof TABS)[number]['key']
@@ -14,9 +15,10 @@ interface DashboardTabsProps {
   matchingTab: ReactNode
   progressTab: ReactNode
   settlementTab: ReactNode
+  inquiryTab: ReactNode
 }
 
-export function DashboardTabs({ matchingTab, progressTab, settlementTab }: DashboardTabsProps) {
+export function DashboardTabs({ matchingTab, progressTab, settlementTab, inquiryTab }: DashboardTabsProps) {
   const [activeTab, setActiveTab] = useState<TabKey>('matching')
 
   return (
@@ -41,6 +43,7 @@ export function DashboardTabs({ matchingTab, progressTab, settlementTab }: Dashb
       {activeTab === 'matching' && matchingTab}
       {activeTab === 'progress' && progressTab}
       {activeTab === 'settlement' && settlementTab}
+      {activeTab === 'inquiry' && inquiryTab}
     </div>
   )
 }
