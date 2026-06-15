@@ -15,9 +15,10 @@ export const metadata: Metadata = {
     siteName: "곁에 yourside",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
+        type: "image/jpeg",
         alt: "곁에 yourside — 부울경 로컬 인력매칭",
       },
     ],
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     title: "곁에 yourside — 월 100만원, 부울경 일손 당신 곁에",
     description:
       "검증된 전문가를 사람이 직접 연결. 부울경 로컬 인력매칭 플랫폼.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
 };
 
