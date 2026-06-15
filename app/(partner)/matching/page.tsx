@@ -46,7 +46,7 @@ export default async function MatchingListPage() {
   }>
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
+    <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-8 animate-fade-in">
       <h1 className="mb-6 text-2xl font-bold text-accent">매칭 제안</h1>
 
       {matchingList.length === 0 ? (

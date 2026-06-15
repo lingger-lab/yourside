@@ -42,7 +42,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
+    <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-8 animate-fade-in">
       <h1 className="mb-2 text-2xl font-bold text-accent">파트너 등록</h1>
       <p className="mb-6 text-sm text-text-muted">
         곁에 파트너로 등록하고 의뢰를 받아보세요.

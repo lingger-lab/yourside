@@ -69,14 +69,17 @@ export default async function Home() {
       </header>
 
       {/* 메인 콘텐츠 */}
-      <div className="flex flex-1 flex-col items-center justify-center px-6 py-10">
-        <main className="flex w-full max-w-md flex-col items-center gap-10 text-center">
+      <div className="flex flex-1 flex-col items-center justify-center px-4 py-6 sm:px-6 sm:py-10">
+        <main className="flex w-full max-w-md flex-col items-center gap-6 sm:gap-10 text-center">
           {/* 히어로 */}
-          <section className="flex flex-col items-center gap-3 animate-fade-in">
-            <h1 className="text-4xl font-bold tracking-tight text-primary">
-              곁에
-            </h1>
-            <p className="text-lg leading-relaxed text-text-muted">
+          <section className="flex flex-col items-center gap-2 sm:gap-3 animate-fade-in">
+            <img
+              src="/logo-hero.png"
+              alt="곁에 yourside"
+              className="w-64 sm:w-72 h-auto"
+            />
+            <h1 className="sr-only">곁에 yourside — 부울경 로컬 인력매칭</h1>
+            <p className="text-base sm:text-lg leading-relaxed text-text-muted">
               부울경 시니어·청년의 경험을 검증해
               <br />
               지역 사장님과 직접 연결합니다.
@@ -86,7 +89,7 @@ export default async function Home() {
           {/* 역할 카드 */}
           <section className="flex w-full flex-col gap-4">
             {/* 사장님 카드 */}
-            <div className="rounded-2xl bg-white p-6 text-left shadow-sm card-hover animate-fade-in stagger-1">
+            <div className="rounded-2xl bg-white p-4 sm:p-6 text-left shadow-sm card-hover animate-fade-in stagger-1">
               <h2 className="text-xl font-bold text-primary">사장님</h2>
               <p className="mt-1 text-sm text-text-muted">
                 검증된 파트너에게 일을 맡기세요
@@ -133,7 +136,7 @@ export default async function Home() {
             </div>
 
             {/* 파트너 카드 */}
-            <div className="rounded-2xl bg-white p-6 text-left shadow-sm card-hover animate-fade-in stagger-2">
+            <div className="rounded-2xl bg-white p-4 sm:p-6 text-left shadow-sm card-hover animate-fade-in stagger-2">
               <h2 className="text-xl font-bold text-accent">파트너</h2>
               <p className="mt-1 text-sm text-text-muted">
                 경험으로 일하고, 정당한 대가를 받으세요
@@ -181,7 +184,7 @@ export default async function Home() {
           </section>
 
           {/* 신뢰 근거 */}
-          <section className="w-full rounded-xl border border-border-light bg-surface-warm p-5 text-left animate-fade-in stagger-3">
+          <section className="w-full rounded-xl border border-border-light bg-surface-warm p-4 sm:p-5 text-left animate-fade-in stagger-3">
             <h3 className="mb-3 text-xs font-semibold tracking-wide text-text-subtle uppercase">곁에가 약속합니다</h3>
             <ul className="flex flex-col gap-2 text-sm text-text-muted">
               <li className="flex items-start gap-2">
@@ -205,8 +208,8 @@ export default async function Home() {
       </div>
 
       {/* 푸터 */}
-      <footer className="border-t border-border-light bg-surface py-8">
-        <div className="mx-auto flex max-w-md flex-col gap-4 px-6">
+      <footer className="border-t border-border-light bg-surface py-6 sm:py-8">
+        <div className="mx-auto flex max-w-md flex-col gap-4 px-4 sm:px-6">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-semibold text-text">곁에 <span className="font-normal text-text-muted">(yourside)</span></p>

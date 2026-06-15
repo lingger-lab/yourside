@@ -86,7 +86,7 @@ export default async function StatusDetailPage(props: PageProps) {
   const remainingHours = Math.max(0, Math.ceil(remainingMs / (1000 * 60 * 60)))
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
+    <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-8 animate-fade-in">
       {/* 뒤로가기 */}
       <Link href="/status" className="mb-4 text-sm text-text-muted hover:text-text transition-colors">
         &larr; 의뢰 목록

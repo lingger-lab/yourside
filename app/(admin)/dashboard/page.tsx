@@ -96,7 +96,7 @@ export default async function AdminDashboardPage() {
     .limit(50)
 
   return (
-    <div className="px-6 py-8 animate-fade-in">
+    <div className="px-4 py-5 sm:px-6 sm:py-8 animate-fade-in">
       <h1 className="mb-6 text-xl font-bold text-text">대시보드</h1>
 
       {/* 요약 카드 */}
@@ -191,7 +191,7 @@ function SummaryCard({
   return (
     <div className="rounded-xl border border-border-light bg-surface p-4 text-center shadow-sm card-hover">
       <p className="text-xs text-text-muted">{label}</p>
-      <p className={`mt-1 text-2xl font-bold ${color}`}>
+      <p className={`mt-1 text-xl sm:text-2xl font-bold ${color}`}>
         {value}
         <span className="text-sm font-normal text-text-muted">{unit}</span>
       </p>

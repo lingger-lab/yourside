@@ -81,7 +81,7 @@ export function ChatWidget() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-20 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-float transition-all hover:scale-105 hover:shadow-lg sm:bottom-6 overflow-hidden"
+          className="fixed bottom-20 right-4 z-50 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full shadow-float transition-all hover:scale-105 hover:shadow-lg sm:bottom-6 overflow-hidden"
           aria-label="곁에 매니저 채팅 열기"
         >
           {/* A: 네이비 배경 / B: 라이트 배경 — 교체 시 src만 변경 */}
@@ -98,7 +98,7 @@ export function ChatWidget() {
         <div
           role="dialog"
           aria-label="곁에 매니저 채팅"
-          className="fixed bottom-0 right-0 z-50 flex h-[32rem] w-full flex-col rounded-t-2xl border border-border-light bg-background shadow-float sm:bottom-6 sm:right-4 sm:w-96 sm:rounded-2xl animate-scale-in"
+          className="fixed bottom-0 right-0 z-50 flex h-[28rem] sm:h-[32rem] w-full flex-col rounded-t-2xl border border-border-light bg-background shadow-float sm:bottom-6 sm:right-4 sm:w-96 sm:rounded-2xl animate-scale-in"
         >
           {/* 헤더 */}
           <div className="flex items-center justify-between rounded-t-2xl bg-primary px-4 py-3 sm:rounded-t-2xl">

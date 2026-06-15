@@ -72,7 +72,7 @@ export default async function WorkDetailPage(props: PageProps) {
   const allStepsDone = steps.length === 5 && steps.every((s) => s.status === 'done')
 
   return (
-    <div className="flex flex-1 flex-col px-6 py-8 animate-fade-in">
+    <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-8 animate-fade-in">
       <Link href="/work" className="mb-4 text-sm text-text-muted hover:text-text transition-colors">
         &larr; 작업 목록
       </Link>
