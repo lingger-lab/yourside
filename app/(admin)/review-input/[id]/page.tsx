@@ -29,7 +29,7 @@ export default async function ReviewInputPage(props: PageProps) {
     .eq('id', dealId)
     .single()
 
-  if (!deal) redirect('/admin/dashboard')
+  if (!deal) redirect('/dashboard')
 
   const req = deal.request as unknown as { id: string; title: string; req_type: string | null; detail: string }
   const partner = deal.partner as unknown as { id: string; name: string | null; field: string | null; career_yrs: number | null }
@@ -44,7 +44,7 @@ export default async function ReviewInputPage(props: PageProps) {
 
   return (
     <div className="px-6 py-8">
-      <Link href="/admin/dashboard" className="mb-4 inline-block text-sm text-text-muted hover:text-text">
+      <Link href="/dashboard" className="mb-4 inline-block text-sm text-text-muted hover:text-text">
         &larr; 대시보드
       </Link>
 

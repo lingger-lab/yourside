@@ -99,7 +99,7 @@ export async function createMatching(
     .update({ status: 'matching' })
     .eq('id', requestId)
 
-  revalidatePath('/admin/dashboard')
+  revalidatePath('/dashboard')
   return {}
 }
 
@@ -147,7 +147,7 @@ export async function releaseSettlement(
       })
   }
 
-  revalidatePath('/admin/dashboard')
+  revalidatePath('/dashboard')
   return {}
 }
 
@@ -192,6 +192,6 @@ export async function submitReview(
 
   if (insertError) return { error: insertError.message }
 
-  revalidatePath('/admin/dashboard')
+  revalidatePath('/dashboard')
   return {}
 }

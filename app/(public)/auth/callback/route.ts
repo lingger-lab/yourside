@@ -60,6 +60,12 @@ export async function GET(request: Request) {
     })
   }
 
+  // 관리자 이메일이면 대시보드로 바로 이동
+  const adminEmails = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim())
+  if (adminEmails.includes(user.email || '')) {
+    return NextResponse.redirect(`${origin}/dashboard`)
+  }
+
   const isFirstLogin = !existingClient && !existingPartner
   if (isFirstLogin) {
     return NextResponse.redirect(`${origin}/vision?role=${role}`)

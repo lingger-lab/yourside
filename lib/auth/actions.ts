@@ -34,6 +34,35 @@ export async function signInWithGoogle(role: UserRole) {
   redirect(data.url)
 }
 
+export async function signInWithKakao(role: UserRole) {
+  const cookieStore = await cookies()
+
+  cookieStore.set('yourside_role', role, {
+    maxAge: 600,
+    path: '/',
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  })
+
+  const supabase = createClient(cookieStore)
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'kakao',
+    options: {
+      redirectTo: `${siteUrl}/auth/callback`,
+    },
+  })
+
+  if (error || !data.url) {
+    redirect('/?error=auth')
+  }
+
+  redirect(data.url)
+}
+
 export async function signOut() {
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)

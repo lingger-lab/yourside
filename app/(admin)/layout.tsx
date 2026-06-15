@@ -26,12 +26,12 @@ export default async function AdminLayout({
       <header className="border-b border-border bg-surface px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/admin/dashboard" className="text-lg font-bold text-accent">
+            <Link href="/dashboard" className="text-lg font-bold text-accent">
               곁에 관리자
             </Link>
             <nav className="flex gap-3">
               <Link
-                href="/admin/dashboard"
+                href="/dashboard"
                 className="text-sm text-text-muted hover:text-text"
               >
                 대시보드

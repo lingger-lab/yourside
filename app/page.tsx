@@ -2,8 +2,9 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { adminClient } from '@/lib/supabase/admin'
-import { signInWithGoogle, signOut } from '@/lib/auth/actions'
+import { signInWithGoogle, signInWithKakao, signOut } from '@/lib/auth/actions'
 import { GoogleIcon } from '@/components/icons/google'
+import { KakaoIcon } from '@/components/icons/kakao'
 import { OpenChatButton } from '@/components/open-chat-button'
 
 export default async function Home() {
@@ -54,12 +55,12 @@ export default async function Home() {
               </form>
             </div>
           ) : (
-            <form action={signInWithGoogle.bind(null, 'client')}>
+            <form action={signInWithKakao.bind(null, 'client')}>
               <button
                 type="submit"
-                className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-primary-light transition-colors btn-press"
+                className="flex items-center gap-1.5 rounded-lg bg-[#FEE500] px-3 py-1.5 text-sm font-medium text-[#191919] shadow-sm hover:bg-[#FDD800] transition-colors btn-press"
               >
-                <GoogleIcon className="h-4 w-4" />
+                <KakaoIcon className="h-4 w-4" />
                 로그인
               </button>
             </form>
@@ -108,15 +109,26 @@ export default async function Home() {
                   )}
                 </div>
               ) : (
-                <form action={signInWithGoogle.bind(null, 'client')} className="mt-4">
-                  <button
-                    type="submit"
-                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-semibold text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
-                  >
-                    <GoogleIcon />
-                    Google로 시작하기
-                  </button>
-                </form>
+                <div className="mt-4 flex flex-col gap-2">
+                  <form action={signInWithKakao.bind(null, 'client')}>
+                    <button
+                      type="submit"
+                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#FEE500] text-base font-semibold text-[#191919] shadow-sm transition-all hover:bg-[#FDD800] hover:shadow-md btn-press"
+                    >
+                      <KakaoIcon />
+                      카카오로 시작하기
+                    </button>
+                  </form>
+                  <form action={signInWithGoogle.bind(null, 'client')}>
+                    <button
+                      type="submit"
+                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border-light bg-white text-base font-medium text-text shadow-sm transition-all hover:bg-surface hover:shadow-md btn-press"
+                    >
+                      <GoogleIcon />
+                      Google로 시작하기
+                    </button>
+                  </form>
+                </div>
               )}
             </div>
 
@@ -144,15 +156,26 @@ export default async function Home() {
                   )}
                 </div>
               ) : (
-                <form action={signInWithGoogle.bind(null, 'partner')} className="mt-4">
-                  <button
-                    type="submit"
-                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-accent text-base font-semibold text-accent transition-colors hover:bg-accent/5 btn-press"
-                  >
-                    <GoogleIcon />
-                    Google로 시작하기
-                  </button>
-                </form>
+                <div className="mt-4 flex flex-col gap-2">
+                  <form action={signInWithKakao.bind(null, 'partner')}>
+                    <button
+                      type="submit"
+                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#FEE500] text-base font-semibold text-[#191919] shadow-sm transition-all hover:bg-[#FDD800] hover:shadow-md btn-press"
+                    >
+                      <KakaoIcon />
+                      카카오로 시작하기
+                    </button>
+                  </form>
+                  <form action={signInWithGoogle.bind(null, 'partner')}>
+                    <button
+                      type="submit"
+                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border-light bg-white text-base font-medium text-text shadow-sm transition-all hover:bg-surface hover:shadow-md btn-press"
+                    >
+                      <GoogleIcon />
+                      Google로 시작하기
+                    </button>
+                  </form>
+                </div>
               )}
             </div>
           </section>
@@ -194,7 +217,7 @@ export default async function Home() {
 
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-subtle">
             <span>문의: 곁에 매니저 (카카오 채널)</span>
-            <span>이메일: admin@enterlabs.kr</span>
+            <span>이메일: iamblackwhite86@gmail.com</span>
           </div>
 
           <hr className="border-border-light" />
