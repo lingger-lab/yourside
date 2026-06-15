@@ -86,10 +86,14 @@ export async function confirmDeal(dealId: string): Promise<{ error?: string }> {
   }
 
   // settlement.escrow_status → 'reviewing'
-  await adminClient
+  const { error: settlementErr } = await adminClient
     .from('settlement')
     .update({ escrow_status: 'reviewing' })
     .eq('deal_id', dealId)
+
+  if (settlementErr) {
+    console.error('[confirmDeal] settlement update failed:', settlementErr.message)
+  }
 
   redirect(`/status/${requestId}`)
 }

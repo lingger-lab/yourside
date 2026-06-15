@@ -73,10 +73,14 @@ export async function acceptMatching(matchingId: string): Promise<{ error?: stri
   const totalPay = workFee + matchFee
 
   // 1. matching.status → 'accepted'
-  await adminClient
+  const { error: matchErr } = await adminClient
     .from('matching')
     .update({ status: 'accepted' })
     .eq('id', matchingId)
+
+  if (matchErr) {
+    return { error: '매칭 상태 변경에 실패했습니다.' }
+  }
 
   // 2. deal 생성
   const { data: deal, error: dealError } = await adminClient
@@ -95,11 +99,13 @@ export async function acceptMatching(matchingId: string): Promise<{ error?: stri
     .single()
 
   if (dealError || !deal) {
-    return { error: '거래 생성에 실패했습니다.' }
+    // 롤백: matching을 다시 proposed로 되돌림
+    await adminClient.from('matching').update({ status: 'proposed' }).eq('id', matchingId)
+    return { error: '거래 생성에 실패했습니다. 다시 시도해주세요.' }
   }
 
   // 3. settlement 생성
-  await adminClient
+  const { error: settlementErr } = await adminClient
     .from('settlement')
     .insert({
       deal_id: deal.id,
@@ -107,9 +113,13 @@ export async function acceptMatching(matchingId: string): Promise<{ error?: stri
       guarantee_fee: calcGuaranteeFee(matchFee),
     })
 
+  if (settlementErr) {
+    console.error('[acceptMatching] settlement insert failed:', settlementErr.message)
+  }
+
   // 4. deal_workflow 5행 생성
   const steps: WorkflowStep[] = ['intake', 'structure', 'generate', 'verify', 'deliver']
-  await adminClient
+  const { error: workflowErr } = await adminClient
     .from('deal_workflow')
     .insert(steps.map((step) => ({
       deal_id: deal.id,
@@ -117,11 +127,19 @@ export async function acceptMatching(matchingId: string): Promise<{ error?: stri
       status: 'pending' as const,
     })))
 
+  if (workflowErr) {
+    console.error('[acceptMatching] workflow insert failed:', workflowErr.message)
+  }
+
   // 5. request.status → 'dealt'
-  await adminClient
+  const { error: reqErr } = await adminClient
     .from('request')
     .update({ status: 'dealt' })
     .eq('id', matching.request_id)
+
+  if (reqErr) {
+    console.error('[acceptMatching] request status update failed:', reqErr.message)
+  }
 
   redirect(`/work/${deal.id}`)
 }

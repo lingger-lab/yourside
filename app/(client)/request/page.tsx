@@ -30,9 +30,6 @@ export default function RequestPage() {
 
       <form
         action={formAction}
-        onSubmit={(e) => {
-          if (!confirm('의뢰를 등록하시겠습니까?')) e.preventDefault()
-        }}
         className="flex flex-col gap-5"
       >
         {/* 퀵칩 — req_type 선택 */}

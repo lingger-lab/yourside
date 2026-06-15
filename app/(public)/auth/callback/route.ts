@@ -46,18 +46,26 @@ export async function GET(request: Request) {
   let isNewRole = false
   if (role === 'client' && !existingClient) {
     isNewRole = true
-    await adminClient.from('client').insert({
+    const { error: insertErr } = await adminClient.from('client').insert({
       auth_user_id: user.id,
       provider,
       email: user.email!,
     })
+    if (insertErr) {
+      console.error('[auth/callback] client insert failed:', insertErr.message)
+      return NextResponse.redirect(`${origin}/?error=profile_create`)
+    }
   } else if (role === 'partner' && !existingPartner) {
     isNewRole = true
-    await adminClient.from('partner').insert({
+    const { error: insertErr } = await adminClient.from('partner').insert({
       auth_user_id: user.id,
       provider,
       email: user.email!,
     })
+    if (insertErr) {
+      console.error('[auth/callback] partner insert failed:', insertErr.message)
+      return NextResponse.redirect(`${origin}/?error=profile_create`)
+    }
   }
 
   // 관리자 이메일이면 대시보드로 바로 이동
