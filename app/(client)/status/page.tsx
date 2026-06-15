@@ -21,6 +21,13 @@ const STATUS_COLORS: Record<string, string> = {
   closed: 'bg-surface text-text-subtle',
 }
 
+const STRIPE_COLORS: Record<string, string> = {
+  open: 'border-l-info',
+  matching: 'border-l-warning',
+  dealt: 'border-l-success',
+  closed: 'border-l-border',
+}
+
 export default async function StatusPage() {
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
@@ -71,7 +78,7 @@ export default async function StatusPage() {
             <li key={req.id} className={`animate-fade-in stagger-${Math.min(i + 1, 5)}`}>
               <Link
                 href={`/status/${req.id}`}
-                className="block rounded-xl border border-border-light p-4 shadow-xs card-hover"
+                className={`block rounded-xl border border-border-light border-l-4 ${STRIPE_COLORS[req.status] || 'border-l-border'} p-4 shadow-xs card-hover`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">

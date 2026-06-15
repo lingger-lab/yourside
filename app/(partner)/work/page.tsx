@@ -17,6 +17,12 @@ const STATUS_COLORS: Record<DealStatus, string> = {
   done: 'bg-success-light text-success',
 }
 
+const STRIPE_COLORS: Record<DealStatus, string> = {
+  quoted: 'border-l-info',
+  working: 'border-l-warning',
+  done: 'border-l-success',
+}
+
 export default async function WorkListPage() {
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
@@ -67,7 +73,7 @@ export default async function WorkListPage() {
             <li key={d.id} className={`animate-fade-in stagger-${Math.min(i + 1, 5)}`}>
               <Link
                 href={`/work/${d.id}`}
-                className="block rounded-xl border border-border-light p-4 shadow-xs card-hover"
+                className={`block rounded-xl border border-border-light border-l-4 ${STRIPE_COLORS[d.status]} p-4 shadow-xs card-hover`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
