@@ -51,20 +51,20 @@ function VisionContent() {
 
         <p className="text-base leading-relaxed text-text-muted">
           {isPartner
-            ? '곁에는 검증된 파트너에게 정당한 작업료를 보장합니다.\n에스크로 안전결제로 작업료 100%를 수령하세요.'
+            ? '곁에는 검증된 파트너에게 정당한 작업료를 보장합니다.\n수수료 0%, 작업료 전액을 지급합니다.'
             : '곁에가 검증한 시니어 전문가가\n사장님의 일을 곁에서 도와드립니다.'}
         </p>
 
         <ul className="flex flex-col gap-3 text-left text-sm">
           {isPartner ? (
             <>
-              <li>작업료 수수료 0% — 전액 수령</li>
+              <li>파트너 수수료 0% — 작업료 전액 지급</li>
               <li>곁에 에스크로로 안전하게 보관</li>
-              <li>곁에 검토진의 공정한 평가</li>
+              <li>곁에 전문가 네트워크의 공정한 평가</li>
             </>
           ) : (
             <>
-              <li>곁에 3인 검토진이 직접 검증</li>
+              <li>곁에 전문가 네트워크가 직접 검증</li>
               <li>에스크로 안전결제 — 검수 후 정산</li>
               <li>사장님 수수료 0% — 매칭비만 별도</li>
             </>

@@ -189,15 +189,15 @@ export default async function Home() {
             <ul className="flex flex-col gap-2 text-sm text-text-muted">
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                곁에 3인 검토진이 직접 검증합니다
+                곁에 전문가 네트워크가 직접 검증합니다
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                사장님 작업료 0% 수수료 · 에스크로 안전결제
+                에스크로 안전결제 · 검수 후 정산
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                파트너 작업료 100% 수령
+                파트너 수수료 0% — 작업료 전액 지급
               </li>
             </ul>
           </section>
