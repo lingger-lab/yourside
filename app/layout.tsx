@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yourside.cloud"),
   title: "곁에 - 부울경 로컬 인력매칭",
   description:
-    "검증된 시니어·청년 파트너와 지역 사장님을 곁에가 직접 연결합니다.",
+    "검증된 시니어 전문가와 지역 사장님을 곁에가 직접 연결합니다.",
   openGraph: {
-    title: "곁에 yourside — 월 100만원, 부울경 일손 당신 곁에",
+    title: "곁에 yourside — 검증된 전문가, 부울경 일손 당신 곁에",
     description:
       "검증된 전문가를 사람이 직접 연결. 부울경 로컬 인력매칭 플랫폼.",
     url: "https://yourside.cloud",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "곁에 yourside — 월 100만원, 부울경 일손 당신 곁에",
+    title: "곁에 yourside — 검증된 전문가, 부울경 일손 당신 곁에",
     description:
       "검증된 전문가를 사람이 직접 연결. 부울경 로컬 인력매칭 플랫폼.",
     images: ["/og-image.jpg"],

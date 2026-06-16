@@ -80,7 +80,7 @@ export default async function Home() {
             />
             <h1 className="sr-only">곁에 yourside — 부울경 로컬 인력매칭</h1>
             <p className="text-base sm:text-lg leading-relaxed text-text-muted">
-              부울경 시니어·청년의 경험을 검증해
+              부울경 검증된 시니어 전문가를
               <br />
               지역 사장님과 직접 연결합니다.
             </p>

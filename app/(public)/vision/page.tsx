@@ -45,14 +45,14 @@ function VisionContent() {
       <main className="flex w-full max-w-md flex-col items-center gap-8 text-center">
         <h1 className="whitespace-pre-line text-3xl font-bold leading-tight text-primary">
           {isPartner
-            ? '당신의 경험이\n월 100만원의 가치가 됩니다'
-            : '월 100만원 이상의\n전문가 도움을 받으세요'}
+            ? '당신의 경험이\n월 100만원 이상의 가치가 됩니다'
+            : '월 100만원 이상의\n전문가 효과를 경험하세요'}
         </h1>
 
         <p className="text-base leading-relaxed text-text-muted">
           {isPartner
             ? '곁에는 검증된 파트너에게 정당한 작업료를 보장합니다.\n에스크로 안전결제로 작업료 100%를 수령하세요.'
-            : '곁에가 검증한 시니어·청년 파트너가\n사장님의 일을 곁에서 도와드립니다.'}
+            : '곁에가 검증한 시니어 전문가가\n사장님의 일을 곁에서 도와드립니다.'}
         </p>
 
         <ul className="flex flex-col gap-3 text-left text-sm">
@@ -87,8 +87,8 @@ function VisionContent() {
         </div>
 
         <p className="text-xs leading-relaxed text-text-subtle">
-          ※ &quot;월 100만원&quot;은 수익을 보장하는 것이 아니라, 곁에가 함께
-          지향하는 목표입니다. 실제 수입은 거래 건수와 내용에 따라 달라집니다.
+          ※ &quot;월 100만원 이상&quot;은 수익을 보장하는 것이 아니라, 곁에가 함께
+          지향하는 목표입니다. 실제 수입은 거래 건수와 내용에 따라 더 클 수도 있습니다.
         </p>
       </main>
     </div>
