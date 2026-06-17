@@ -35,7 +35,7 @@ export async function createRequest(
     return { error: '의뢰 내용을 입력해주세요.' }
   }
 
-  // client_id 조회 (없으면 자동 생성 — 파트너가 사장님 역할도 사용하는 경우)
+  // client_id 조회 (없으면 자동 생성 — 시니어가 기업 역할도 사용하는 경우)
   let { data: client } = await adminClient
     .from('client')
     .select('id')

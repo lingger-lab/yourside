@@ -31,7 +31,10 @@ export default async function Home() {
       {/* 상단 헤더 바 */}
       <header className="sticky top-0 z-40 border-b border-border-light bg-background/80 backdrop-blur-lg">
         <div className="mx-auto flex h-14 max-w-md items-center justify-between px-4">
-          <Link href="/" className="text-xl font-bold text-primary tracking-tight">곁에</Link>
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-xl font-bold text-primary tracking-tight">지사네</Link>
+            <Link href="/service" className="text-xs text-text-muted hover:text-text transition-colors">서비스 안내</Link>
+          </div>
           {user ? (
             <div className="flex items-center gap-2">
               <Link
@@ -75,24 +78,24 @@ export default async function Home() {
           <section className="flex flex-col items-center gap-2 sm:gap-3 animate-fade-in">
             <img
               src="/logo-hero.png"
-              alt="곁에 yourside"
+              alt="지사네"
               className="w-64 sm:w-72 h-auto"
             />
-            <h1 className="sr-only">곁에 yourside — 부울경 로컬 인력매칭</h1>
+            <h1 className="sr-only">지사네 — 부울경 로컬 인력매칭</h1>
             <p className="text-base sm:text-lg leading-relaxed text-text-muted">
               부울경 검증된 시니어 전문가를
               <br />
-              지역 사장님과 직접 연결합니다.
+              지역 기업과 직접 연결합니다.
             </p>
           </section>
 
           {/* 역할 카드 */}
           <section className="flex w-full flex-col gap-4">
-            {/* 사장님 카드 */}
+            {/* 기업공간 카드 */}
             <div className="rounded-2xl bg-white p-4 sm:p-6 text-left shadow-sm card-hover animate-fade-in stagger-1">
-              <h2 className="text-xl font-bold text-primary">사장님</h2>
+              <h2 className="text-xl font-bold text-primary">기업공간</h2>
               <p className="mt-1 text-sm text-text-muted">
-                검증된 파트너에게 일을 맡기세요
+                검증된 시니어 전문가에게 일을 맡기세요
               </p>
               {user ? (
                 <div className="mt-4 flex gap-2">
@@ -100,7 +103,7 @@ export default async function Home() {
                     href="/request"
                     className="flex h-12 flex-1 items-center justify-center rounded-xl bg-primary text-base font-semibold text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
                   >
-                    {hasClient ? '일 맡기기' : '사장님으로 시작하기'}
+                    {hasClient ? '일 맡기기' : '기업으로 시작하기'}
                   </Link>
                   {hasClient && (
                     <Link
@@ -135,9 +138,9 @@ export default async function Home() {
               )}
             </div>
 
-            {/* 파트너 카드 */}
+            {/* 시니어공간 카드 */}
             <div className="rounded-2xl bg-white p-4 sm:p-6 text-left shadow-sm card-hover animate-fade-in stagger-2">
-              <h2 className="text-xl font-bold text-accent">파트너</h2>
+              <h2 className="text-xl font-bold text-accent">시니어공간</h2>
               <p className="mt-1 text-sm text-text-muted">
                 경험으로 일하고, 정당한 대가를 받으세요
               </p>
@@ -147,7 +150,7 @@ export default async function Home() {
                     href={hasPartner ? '/matching' : '/register'}
                     className="flex h-12 flex-1 items-center justify-center rounded-xl border-2 border-accent text-base font-semibold text-accent transition-colors hover:bg-accent/5 btn-press"
                   >
-                    {hasPartner ? '파트너 영역 가기' : '파트너로 등록하기'}
+                    {hasPartner ? '시니어공간 가기' : '시니어로 등록하기'}
                   </Link>
                   {hasPartner && (
                     <Link
@@ -183,13 +186,21 @@ export default async function Home() {
             </div>
           </section>
 
+          {/* 회원가입 안내 */}
+          {!user && (
+            <div className="flex gap-4 text-sm">
+              <Link href="/signup?role=client" className="text-primary font-medium hover:underline underline-offset-4">시니어 인력 신청</Link>
+              <Link href="/signup?role=partner" className="text-accent font-medium hover:underline underline-offset-4">기업 매칭 신청</Link>
+            </div>
+          )}
+
           {/* 신뢰 근거 */}
           <section className="w-full rounded-xl border border-border-light bg-surface-warm p-4 sm:p-5 text-left animate-fade-in stagger-3">
-            <h3 className="mb-3 text-xs font-semibold tracking-wide text-text-subtle uppercase">곁에가 약속합니다</h3>
+            <h3 className="mb-3 text-xs font-semibold tracking-wide text-text-subtle uppercase">지사네가 약속합니다</h3>
             <ul className="flex flex-col gap-2 text-sm text-text-muted">
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                곁에 전문가 네트워크가 직접 검증합니다
+                지사네 전문가 네트워크가 직접 검증합니다
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -197,12 +208,12 @@ export default async function Home() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                파트너 수수료 0% — 작업료 전액 지급
+                시니어 수수료 0% — 작업료 전액 지급
               </li>
             </ul>
           </section>
 
-          {/* 곁에 매니저 문의 */}
+          {/* 지사네 매니저 문의 */}
           <OpenChatButton />
         </main>
       </div>
@@ -212,26 +223,27 @@ export default async function Home() {
         <div className="mx-auto flex max-w-md flex-col gap-4 px-4 sm:px-6">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-semibold text-text">곁에 <span className="font-normal text-text-muted">(yourside)</span></p>
+              <p className="text-sm font-semibold text-text">지사네 <span className="font-normal text-text-muted">(jisane)</span></p>
               <p className="mt-1 text-xs text-text-subtle">부울경 로컬 인력매칭 플랫폼</p>
             </div>
-            <p className="text-xs text-text-subtle">운영: 엔터랩스</p>
+            <p className="text-xs text-text-subtle">운영: (주)지사네</p>
           </div>
 
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-subtle">
             <span>사업자등록번호: 405-02-46113</span>
-            <span>문의: 곁에 매니저 (카카오 채널)</span>
+            <span>문의: 지사네 매니저 (카카오 채널)</span>
             <span>이메일: iamblackwhite86@gmail.com</span>
           </div>
 
           <div className="flex gap-3 text-xs">
             <Link href="/privacy" className="text-text-subtle hover:text-text-muted transition-colors">개인정보처리방침</Link>
+            <Link href="/service" className="text-text-subtle hover:text-text-muted transition-colors">서비스 안내</Link>
           </div>
 
           <hr className="border-border-light" />
 
           <div className="flex items-center justify-between">
-            <p className="text-xs text-text-subtle">&copy; 2025 곁에. All rights reserved.</p>
+            <p className="text-xs text-text-subtle">&copy; 2025 (주)지사네. All rights reserved.</p>
             {isAdmin ? (
               <Link
                 href="/dashboard"

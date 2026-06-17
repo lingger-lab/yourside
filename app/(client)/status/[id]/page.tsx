@@ -112,7 +112,7 @@ export default async function StatusDetailPage(props: PageProps) {
         <div className="rounded-xl border border-border-light p-4 shadow-xs">
           <h2 className="mb-2 font-semibold text-text">접수 완료</h2>
           <p className="text-sm text-text-muted">
-            곁에 매니저가 의뢰를 확인하고 적합한 파트너를 연결해드립니다.
+            지사네 매니저가 의뢰를 확인하고 적합한 시니어 전문가를 연결해드립니다.
           </p>
           {remainingHours > 0 && (
             <p className="mt-3 text-sm font-semibold text-accent">
@@ -124,9 +124,9 @@ export default async function StatusDetailPage(props: PageProps) {
 
       {req.status === 'matching' && (
         <div className="rounded-xl border border-border-light p-4 shadow-xs">
-          <h2 className="mb-2 font-semibold text-text">파트너 연결 중</h2>
+          <h2 className="mb-2 font-semibold text-text">시니어 연결 중</h2>
           <p className="text-sm text-text-muted">
-            적합한 파트너를 찾고 있습니다. 곧 견적을 보내드리겠습니다.
+            적합한 시니어 전문가를 찾고 있습니다. 곧 견적을 보내드리겠습니다.
           </p>
         </div>
       )}

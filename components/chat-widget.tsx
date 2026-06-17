@@ -12,8 +12,8 @@ const QUICK_QUESTIONS = [
   '수수료가 어떻게 되나요?',
   '선입금은 안전한가요?',
   '일 맡기기는 어떻게 하나요?',
-  '파트너 등록은 어떻게 하나요?',
-  '곁에는 어떤 서비스인가요?',
+  '시니어 등록은 어떻게 하나요?',
+  '지사네는 어떤 서비스인가요?',
 ]
 
 const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_placeholder' // TODO: 실제 채널 URL로 교체
@@ -82,12 +82,12 @@ export function ChatWidget() {
           type="button"
           onClick={() => setIsOpen(true)}
           className="fixed bottom-20 right-4 z-50 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full shadow-float transition-all hover:scale-105 hover:shadow-lg sm:bottom-6 overflow-hidden"
-          aria-label="곁에 매니저 채팅 열기"
+          aria-label="지사네 매니저 채팅 열기"
         >
           {/* A: 네이비 배경 / B: 라이트 배경 — 교체 시 src만 변경 */}
           <img
             src="/chat-icon-a.png"
-            alt="곁에 매니저"
+            alt="지사네 매니저"
             className="h-full w-full object-cover"
           />
         </button>
@@ -97,13 +97,13 @@ export function ChatWidget() {
       {isOpen && (
         <div
           role="dialog"
-          aria-label="곁에 매니저 채팅"
+          aria-label="지사네 매니저 채팅"
           className="fixed bottom-0 right-0 z-50 flex h-[28rem] sm:h-[32rem] w-full flex-col rounded-t-2xl border border-border-light bg-background shadow-float sm:bottom-6 sm:right-4 sm:w-96 sm:rounded-2xl animate-scale-in"
         >
           {/* 헤더 */}
           <div className="flex items-center justify-between rounded-t-2xl bg-primary px-4 py-3 sm:rounded-t-2xl">
             <div>
-              <p className="text-sm font-bold text-white">곁에 매니저</p>
+              <p className="text-sm font-bold text-white">지사네 매니저</p>
               <p className="text-xs text-white/70">무엇이든 물어보세요</p>
             </div>
             <button

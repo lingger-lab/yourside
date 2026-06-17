@@ -96,7 +96,7 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
             <p><span className="font-medium">발행일:</span> {issueDate}</p>
           </div>
           <div className="text-right">
-            <p className="font-medium">곁에 (yourside)</p>
+            <p className="font-medium">지사네 (jisane)</p>
             <p className="text-xs text-text-muted">부울경 로컬 인력매칭 플랫폼</p>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
                 <td className="py-2 text-right">{deal.work_fee.toLocaleString('ko-KR')}원</td>
               </tr>
               <tr className="border-b border-border-light">
-                <td className="py-2">매칭비 (곁에 수수료)</td>
+                <td className="py-2">매칭비 (지사네 수수료)</td>
                 <td className="py-2 text-right">{deal.match_fee.toLocaleString('ko-KR')}원</td>
               </tr>
               <tr className="border-b border-border bg-surface font-bold">
@@ -173,10 +173,10 @@ export default async function QuotePage(props: { params: Promise<{ dealId: strin
 
         {/* 안내 */}
         <div className="rounded-lg bg-surface p-4 text-xs text-text-muted">
-          <p className="mb-1">본 견적서는 곁에 플랫폼을 통해 자동 생성되었습니다.</p>
+          <p className="mb-1">본 견적서는 지사네 플랫폼을 통해 자동 생성되었습니다.</p>
           <p className="mb-1">작업료는 에스크로 방식으로 안전하게 보관됩니다.</p>
-          <p className="mb-1">파트너 작업료 수수료 0% — 작업료 전액이 파트너에게 지급됩니다.</p>
-          <p>매칭비는 곁에 플랫폼 중개 수수료입니다.</p>
+          <p className="mb-1">시니어 작업료 수수료 0% — 작업료 전액이 시니어에게 지급됩니다.</p>
+          <p>매칭비는 지사네 플랫폼 중개 수수료입니다.</p>
         </div>
       </div>
     </div>

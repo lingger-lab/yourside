@@ -115,7 +115,7 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
             <p><span className="font-medium">거래일:</span> {dealDate}</p>
           </div>
           <div className="text-right">
-            <p className="font-medium">곁에 (yourside)</p>
+            <p className="font-medium">지사네 (jisane)</p>
             <p className="text-xs text-text-muted">부울경 로컬 인력매칭 플랫폼</p>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
               </tr>
               <tr className="border-b border-border-light">
                 <td className="py-2">매칭비</td>
-                <td className="py-2 text-center text-xs text-text-muted">곁에 중개 수수료</td>
+                <td className="py-2 text-center text-xs text-text-muted">지사네 중개 수수료</td>
                 <td className="py-2 text-right">{deal.match_fee.toLocaleString('ko-KR')}원</td>
               </tr>
               <tr className="border-b border-border bg-surface font-bold">
@@ -211,9 +211,9 @@ export default async function StatementPage(props: { params: Promise<{ dealId: s
 
         {/* 안내 */}
         <div className="rounded-lg bg-surface p-4 text-xs text-text-muted">
-          <p className="mb-1">본 거래명세서는 곁에 플랫폼을 통해 자동 생성되었습니다.</p>
+          <p className="mb-1">본 거래명세서는 지사네 플랫폼을 통해 자동 생성되었습니다.</p>
           <p className="mb-1">작업료는 에스크로(안전결제) 방식으로 처리됩니다.</p>
-          <p>문의: 곁에 매니저 (카카오 채널)</p>
+          <p>문의: 지사네 매니저 (카카오 채널)</p>
         </div>
       </div>
     </div>

@@ -82,7 +82,7 @@ export async function POST(request: Request) {
 
   return NextResponse.json({
     answer:
-      '해당 질문은 곁에 매니저가 직접 답변드리겠습니다. 카카오톡 채널로 연결하시면 더 빠르게 도움 받으실 수 있습니다.',
+      '해당 질문은 지사네 매니저가 직접 답변드리겠습니다. 카카오톡 채널로 연결하시면 더 빠르게 도움 받으실 수 있습니다.',
     escalated: true,
     escalate_to: escalateTo,
     category,

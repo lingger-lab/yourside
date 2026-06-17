@@ -126,7 +126,7 @@ export default async function WorkDetailPage(props: PageProps) {
         <div className="mb-4 rounded-xl border border-success/20 bg-success-light p-4 text-center">
           <p className="font-semibold text-success">모든 단계 완료</p>
           <p className="mt-1 text-xs text-success/80">
-            곁에 매니저가 확인 후 사장님 검수 단계로 전환합니다.
+            지사네 매니저가 확인 후 기업 검수 단계로 전환합니다.
           </p>
         </div>
       )}
@@ -138,7 +138,7 @@ export default async function WorkDetailPage(props: PageProps) {
           <p className="text-sm text-success/80">
             {settle?.escrow_status === 'released'
               ? `정산 완료 — ${d.work_fee.toLocaleString('ko-KR')}원이 지급되었습니다.`
-              : '곁에 검토진 확인 중입니다. 정산이 곧 진행됩니다.'}
+              : '지사네 검토진 확인 중입니다. 정산이 곧 진행됩니다.'}
           </p>
         </div>
       )}

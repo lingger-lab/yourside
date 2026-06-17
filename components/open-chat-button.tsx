@@ -7,7 +7,7 @@ export function OpenChatButton() {
       onClick={() => window.dispatchEvent(new Event('open-chat-widget'))}
       className="text-sm font-medium text-accent underline underline-offset-4"
     >
-      곁에 매니저에게 문의하기
+      지사네 매니저에게 문의하기
     </button>
   )
 }

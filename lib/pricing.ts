@@ -1,5 +1,5 @@
 /**
- * 곁에 7구간 매칭피 계산 (마스터문서 v3.3 §5.1)
+ * 지사네 7구간 매칭피 계산 (마스터문서 v3.3 §5.1)
  * VAT 별도 기준
  */
 
@@ -26,7 +26,7 @@ export function calcMatchFee(workFee: number): number {
 }
 
 /**
- * 곁에 책임 적립금 (마스터문서 v3.3 §5.2)
+ * 지사네 책임 적립금 (마스터문서 v3.3 §5.2)
  * matchFee의 10%를 guarantee_fund_ledger에 적립
  */
 export function calcGuaranteeFee(matchFee: number, rate = 0.1): number {

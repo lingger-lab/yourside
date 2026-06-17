@@ -48,7 +48,7 @@ export default async function ReviewInputPage(props: PageProps) {
         &larr; 대시보드
       </Link>
 
-      <h1 className="mb-6 text-xl font-bold text-text">곁에 리뷰 입력</h1>
+      <h1 className="mb-6 text-xl font-bold text-text">지사네 리뷰 입력</h1>
 
       {/* 거래 요약 */}
       <div className="mb-6 rounded-xl border border-border-light p-4 shadow-xs">

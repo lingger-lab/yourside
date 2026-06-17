@@ -16,7 +16,7 @@ export function PartnerNav() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 border-t border-border-light bg-background/80 backdrop-blur-lg pb-safe">
       <div className="mx-auto flex max-w-md items-center justify-around px-4 py-1">
-        <span className="absolute left-2 top-1 text-[10px] font-semibold text-accent/50">파트너</span>
+        <span className="absolute left-2 top-1 text-[10px] font-semibold text-accent/50">시니어공간</span>
         {TABS.map((tab) => {
           const isActive = tab.href === '/'
             ? pathname === '/'
@@ -41,7 +41,7 @@ export function PartnerNav() {
           href="/request"
           className="flex flex-1 flex-col items-center gap-0.5 py-2.5 text-sm font-medium text-primary transition-colors hover:text-primary-light"
         >
-          사장님 전환
+          기업공간 전환
         </Link>
       </div>
     </nav>

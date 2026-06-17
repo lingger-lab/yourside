@@ -56,7 +56,7 @@ export default async function MatchingListPage() {
         <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
           <p className="text-text-muted">아직 매칭 제안이 없습니다.</p>
           <p className="text-xs text-text-subtle">
-            곁에 매니저가 적합한 의뢰를 연결해드립니다.
+            지사네 매니저가 적합한 의뢰를 연결해드립니다.
           </p>
         </div>
       ) : (

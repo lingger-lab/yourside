@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'deal_id is required' }, { status: 400 })
   }
 
-  // deal 조회 + 소유권 확인 (사장님 = request.client_id)
+  // deal 조회 + 소유권 확인 (기업 = request.client_id)
   const { data: deal } = await adminClient
     .from('deal')
     .select('id, request_id, total_pay, status, work_fee, match_fee')
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Deal is not in quoted status' }, { status: 400 })
   }
 
-  // 사장님 소유권: request.client_id → client.auth_user_id
+  // 기업 소유권: request.client_id → client.auth_user_id
   const { data: req } = await adminClient
     .from('request')
     .select('id, client_id, title')
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
     const result = await createCheckoutSession(
       deal.id,
       deal.total_pay,
-      `곁에 작업 — ${req.title || '의뢰'}`
+      `지사네 작업 — ${req.title || '의뢰'}`
     )
 
     // settlement에 payment_key 저장

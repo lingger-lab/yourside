@@ -92,7 +92,7 @@ export async function submitWork(dealId: string): Promise<{ error?: string }> {
     return { error: '납품 단계를 먼저 완료해주세요.' }
   }
 
-  // 안내: 관리자 확인 후 사장님 검수로 전환됨
+  // 안내: 관리자 확인 후 기업 검수로 전환됨
   // Phase 6에서 관리자가 deal.status 변경 처리
   revalidatePath(`/work/${dealId}`)
   return {}

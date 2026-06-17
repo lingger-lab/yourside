@@ -28,7 +28,7 @@ export async function GET(
     return NextResponse.json({ error: 'Settlement not found' }, { status: 404 })
   }
 
-  // 소유권 확인: 사장님(client) 또는 파트너
+  // 소유권 확인: 기업(client) 또는 시니어
   const deal = settlement.deal as unknown as {
     id: string
     request_id: string
@@ -50,7 +50,7 @@ export async function GET(
     return NextResponse.json({ settlement })
   }
 
-  // 사장님 확인
+  // 기업 확인
   const { data: req } = await adminClient
     .from('request')
     .select('client_id')

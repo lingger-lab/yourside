@@ -27,7 +27,7 @@ export default async function AdminLayout({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/dashboard" className="text-lg font-bold text-accent">
-              곁에 관리자
+              지사네 관리자
             </Link>
             <nav className="flex gap-3">
               <Link

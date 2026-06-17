@@ -51,22 +51,22 @@ function VisionContent() {
 
         <p className="text-base leading-relaxed text-text-muted">
           {isPartner
-            ? '곁에는 검증된 파트너에게 정당한 작업료를 보장합니다.\n수수료 0%, 작업료 전액을 지급합니다.'
-            : '곁에가 검증한 시니어 전문가가\n사장님의 일을 곁에서 도와드립니다.'}
+            ? '지사네는 검증된 시니어에게 정당한 작업료를 보장합니다.\n수수료 0%, 작업료 전액을 지급합니다.'
+            : '지사네가 검증한 시니어 전문가가\n기업의 일을 곁에서 도와드립니다.'}
         </p>
 
         <ul className="flex flex-col gap-3 text-left text-sm">
           {isPartner ? (
             <>
-              <li>파트너 수수료 0% — 작업료 전액 지급</li>
-              <li>곁에 에스크로로 안전하게 보관</li>
-              <li>곁에 전문가 네트워크의 공정한 평가</li>
+              <li>시니어 수수료 0% — 작업료 전액 지급</li>
+              <li>지사네 에스크로로 안전하게 보관</li>
+              <li>지사네 전문가 네트워크의 공정한 평가</li>
             </>
           ) : (
             <>
-              <li>곁에 전문가 네트워크가 직접 검증</li>
+              <li>지사네 전문가 네트워크가 직접 검증</li>
               <li>에스크로 안전결제 — 검수 후 정산</li>
-              <li>사장님 수수료 0% — 매칭비만 별도</li>
+              <li>기업 수수료 0% — 매칭비만 별도</li>
             </>
           )}
         </ul>
@@ -87,7 +87,7 @@ function VisionContent() {
         </div>
 
         <p className="text-xs leading-relaxed text-text-subtle">
-          ※ &quot;월 100만원 이상&quot;은 수익을 보장하는 것이 아니라, 곁에가 함께
+          ※ &quot;월 100만원 이상&quot;은 수익을 보장하는 것이 아니라, 지사네가 함께
           지향하는 목표입니다. 실제 수입은 거래 건수와 내용에 따라 더 클 수도 있습니다.
         </p>
       </main>

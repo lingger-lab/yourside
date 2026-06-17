@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: '개인정보처리방침 | 곁에',
+  title: '개인정보처리방침 | 지사네',
 }
 
 export default function PrivacyPage() {
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="mb-3 text-base font-semibold text-text">1. 개인정보의 수집 및 이용 목적</h2>
           <p>
-            엔터랩스(이하 &quot;회사&quot;)는 &quot;곁에(yourside)&quot; 서비스(이하 &quot;서비스&quot;) 제공을 위해
+            (주)지사네(이하 &quot;회사&quot;)는 &quot;지사네&quot; 서비스(이하 &quot;서비스&quot;) 제공을 위해
             다음의 목적으로 개인정보를 수집·이용합니다.
           </p>
           <ul className="mt-2 list-disc pl-5 flex flex-col gap-1">
@@ -49,12 +49,12 @@ export default function PrivacyPage() {
                   <td className="py-2">카카오/Google OAuth</td>
                 </tr>
                 <tr className="border-b border-border-light">
-                  <td className="py-2 pr-4">사장님(의뢰인)</td>
+                  <td className="py-2 pr-4">기업(의뢰인)</td>
                   <td className="py-2 pr-4">업종, 의뢰 내용, 연락처</td>
                   <td className="py-2">서비스 이용 중 입력</td>
                 </tr>
                 <tr className="border-b border-border-light">
-                  <td className="py-2 pr-4">파트너</td>
+                  <td className="py-2 pr-4">시니어</td>
                   <td className="py-2 pr-4">이름, 분야, 경력, 자기소개, 포트폴리오</td>
                   <td className="py-2">서비스 이용 중 입력</td>
                 </tr>
@@ -162,7 +162,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="mb-3 text-base font-semibold text-text">9. 개인정보 보호책임자</h2>
           <ul className="list-none flex flex-col gap-1">
-            <li><span className="text-text">회사명:</span> 엔터랩스</li>
+            <li><span className="text-text">회사명:</span> (주)지사네</li>
             <li><span className="text-text">사업자등록번호:</span> 405-02-46113</li>
             <li><span className="text-text">담당자:</span> 개인정보 보호책임자</li>
             <li><span className="text-text">이메일:</span> iamblackwhite86@gmail.com</li>

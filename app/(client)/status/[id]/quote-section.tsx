@@ -33,8 +33,8 @@ export function QuoteSection({ deal, partner }: QuoteSectionProps) {
           <div>
             <p className="font-medium text-text">
               {partner?.career_yrs
-                ? `경력 ${partner.career_yrs}년 파트너`
-                : '곁에 인증 파트너'}
+                ? `경력 ${partner.career_yrs}년 시니어`
+                : '지사네 인증 시니어'}
             </p>
             {partner?.field && (
               <p className="text-xs text-text-muted">전문 분야: {partner.field}</p>
@@ -56,8 +56,8 @@ export function QuoteSection({ deal, partner }: QuoteSectionProps) {
       {/* 에스크로 안내 */}
       <div className="mb-4 rounded-xl bg-background p-3">
         <p className="text-xs text-text-muted">
-          곁에 에스크로 안전결제로 진행됩니다. 결제 금액은 작업 완료 및 검수
-          확인 후 파트너에게 정산됩니다.
+          지사네 에스크로 안전결제로 진행됩니다. 결제 금액은 작업 완료 및 검수
+          확인 후 시니어에게 정산됩니다.
         </p>
       </div>
 

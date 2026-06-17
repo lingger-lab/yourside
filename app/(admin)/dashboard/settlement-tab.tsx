@@ -57,7 +57,7 @@ export function SettlementTab({
       <div className="rounded-lg border border-accent/30 bg-accent/5 p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-text-muted">곁에 책임 적립금</p>
+            <p className="text-xs text-text-muted">지사네 책임 적립금</p>
             <p className="mt-1 text-xl font-bold text-accent">
               {fundBalance.toLocaleString('ko-KR')}
               <span className="text-sm font-normal">원</span>

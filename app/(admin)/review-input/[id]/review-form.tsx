@@ -68,7 +68,7 @@ export function ReviewForm({ dealId }: { dealId: string }) {
           id="comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="사장님/파트너에게 공개되는 평가입니다."
+          placeholder="기업/시니어에게 공개되는 평가입니다."
           rows={3}
           className="w-full rounded-lg border border-border bg-surface p-3 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
         />

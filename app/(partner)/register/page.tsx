@@ -43,9 +43,9 @@ export default function RegisterPage() {
 
   return (
     <div className="flex flex-1 flex-col px-4 py-5 sm:px-6 sm:py-8 animate-fade-in">
-      <h1 className="mb-2 text-2xl font-bold text-accent">파트너 등록</h1>
+      <h1 className="mb-2 text-2xl font-bold text-accent">시니어 등록</h1>
       <p className="mb-6 text-sm text-text-muted">
-        곁에 파트너로 등록하고 의뢰를 받아보세요.
+        지사네 시니어로 등록하고 의뢰를 받아보세요.
       </p>
 
       {/* 작업료 0% 수수료 강조 */}
@@ -139,7 +139,7 @@ export default function RegisterPage() {
 
         {/* 제출 */}
         <SubmitButton className="rounded-xl bg-accent px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-accent/90 hover:shadow-md disabled:opacity-50">
-          파트너 등록 완료
+          시니어 등록 완료
         </SubmitButton>
       </form>
     </div>

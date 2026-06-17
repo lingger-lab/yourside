@@ -33,7 +33,7 @@ export function InquiryTab({ inquiries }: { inquiries: InquiryItem[] }) {
                 <div className="mt-2 flex gap-2 text-xs text-text-muted">
                   {inq.author_type && (
                     <span className="rounded bg-surface px-2 py-0.5">
-                      {inq.author_type === 'client' ? '사장님' : '파트너'}
+                      {inq.author_type === 'client' ? '기업' : '시니어'}
                     </span>
                   )}
                   {inq.category && (
