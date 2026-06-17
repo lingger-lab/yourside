@@ -3,9 +3,9 @@
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { signInWithGoogle, signInWithKakao } from '@/lib/auth/actions'
-import { GoogleIcon } from '@/components/icons/google'
+import { signInWithKakao } from '@/lib/auth/actions'
 import { KakaoIcon } from '@/components/icons/kakao'
+import { GoogleLoginButton } from '@/components/google-login-button'
 
 function SignupContent() {
   const searchParams = useSearchParams()
@@ -78,15 +78,11 @@ function SignupContent() {
               카카오로 회원가입
             </button>
           </form>
-          <form action={signInWithGoogle.bind(null, selectedRole)}>
-            <button
-              type="submit"
-              className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-medium text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
-            >
-              <GoogleIcon />
-              Google로 회원가입
-            </button>
-          </form>
+          <GoogleLoginButton
+            role={selectedRole}
+            label="Google로 회원가입"
+            className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-medium text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
+          />
         </div>
 
         <p className="text-xs text-text-subtle text-center leading-relaxed">

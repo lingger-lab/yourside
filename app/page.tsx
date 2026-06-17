@@ -2,9 +2,9 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { adminClient } from '@/lib/supabase/admin'
-import { signInWithGoogle, signInWithKakao, signOut } from '@/lib/auth/actions'
-import { GoogleIcon } from '@/components/icons/google'
+import { signInWithKakao, signOut } from '@/lib/auth/actions'
 import { KakaoIcon } from '@/components/icons/kakao'
+import { GoogleLoginButton } from '@/components/google-login-button'
 import { OpenChatButton } from '@/components/open-chat-button'
 
 export default async function Home() {
@@ -125,15 +125,11 @@ export default async function Home() {
                       카카오로 시작하기
                     </button>
                   </form>
-                  <form action={signInWithGoogle.bind(null, 'client')}>
-                    <button
-                      type="submit"
-                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-medium text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
-                    >
-                      <GoogleIcon />
-                      Google로 시작하기
-                    </button>
-                  </form>
+                  <GoogleLoginButton
+                    role="client"
+                    label="Google로 시작하기"
+                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-medium text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
+                  />
                 </div>
               )}
             </div>
@@ -172,15 +168,11 @@ export default async function Home() {
                       카카오로 시작하기
                     </button>
                   </form>
-                  <form action={signInWithGoogle.bind(null, 'partner')}>
-                    <button
-                      type="submit"
-                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-medium text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
-                    >
-                      <GoogleIcon />
-                      Google로 시작하기
-                    </button>
-                  </form>
+                  <GoogleLoginButton
+                    role="partner"
+                    label="Google로 시작하기"
+                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary text-base font-medium text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md btn-press"
+                  />
                 </div>
               )}
             </div>
